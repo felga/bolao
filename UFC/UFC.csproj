@@ -167,6 +167,8 @@
     <Content Include="imgs\lateral_dir_aposta_interna.gif" />
     <Content Include="imgs\lateral_esq_aposta_interna.gif" />
     <Content Include="imgs\principal.jpg" />
+    <Content Include="imgs\selo.gif" />
+    <Content Include="imgs\selo_vazio.gif" />
     <Content Include="imgs\seta_menu_dir.gif" />
     <Content Include="imgs\sp.gif" />
     <Content Include="InstallationDummyFile.txt" />
