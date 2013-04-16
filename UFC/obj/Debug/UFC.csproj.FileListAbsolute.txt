@@ -12,3 +12,6 @@ C:\Users\FELGAMINI\Documents\GitHub\bolao\UFC\bin\UFC.pdb
 C:\Users\FELGAMINI\Documents\GitHub\bolao\UFC\bin\EntityFramework.dll
 C:\Users\FELGAMINI\Documents\GitHub\bolao\UFC\bin\EntityFramework.xml
 C:\Users\FELGAMINI\Documents\GitHub\bolao\UFC\obj\Debug\UFC.pdb
+C:\Users\FELGAMINI\Documents\GitHub\bolao\UFC\bin\Premotion.AspNet.AppHarbor.Integration.dll
+C:\Users\FELGAMINI\Documents\GitHub\bolao\UFC\bin\Premotion.AspNet.AppHarbor.Integration.pdb
+C:\Users\FELGAMINI\Documents\GitHub\bolao\UFC\bin\Premotion.AspNet.AppHarbor.Integration.xml
