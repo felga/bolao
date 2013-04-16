@@ -88,6 +88,7 @@
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Helpers\HtmlPropertiesAttributes.cs" />
     <Compile Include="Helpers\MetadataProvider.cs" />
+    <Compile Include="Helpers\SendMail.cs" />
     <Compile Include="Helpers\ValidateHelper.cs" />
     <Compile Include="LUTA.cs">
       <DependentUpon>Model1.tt</DependentUpon>

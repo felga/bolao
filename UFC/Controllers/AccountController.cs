@@ -7,6 +7,7 @@ using System.Web.Routing;
 using System.Web.Security;
 using UFC;
 using UFC.Models;
+using Helpers;
 
 namespace Rastreador.Controllers
 {
@@ -75,8 +76,32 @@ namespace Rastreador.Controllers
             return View();
         }
 
-        public ActionResult RegisterSuccess()
+        public ActionResult VerificaUsuario(Guid token)
         {
+            MembershipUser userInfo = Membership.GetUser(token);
+            userInfo.IsApproved = true;
+            Membership.UpdateUser(userInfo);
+            TempData["message"] = "Conta validada com sucesso. Agora você já pode fazer login no site.";
+            return RedirectToAction("Index","Home");
+        }
+
+        public ActionResult RegisterSuccess(string email,Guid token)
+        {
+            try
+            {
+                SendMail oSendMail = new SendMail();
+                oSendMail.setAssunto("Confirmação de cadastro");
+                oSendMail.setCorpo(Request.Url.ToString().Replace("email=" + email + "&", "").Replace("RegisterSuccess", "VerificaUsuario"));
+                oSendMail.setRemetente("ctracker@celtica.com.br");
+                oSendMail.setDestinatario(email);
+                oSendMail.sendEmail();
+            }
+            catch (Exception)
+            {
+                
+
+            }
+
             return View();
         }
 
@@ -91,7 +116,7 @@ namespace Rastreador.Controllers
             {
                 // Attempt to register the user
                 MembershipCreateStatus createStatus;
-                Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
+                Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, false, null, out createStatus);
                 if (createStatus == MembershipCreateStatus.Success)
                 {
                     MembershipUser currentUser = Membership.GetUser(model.UserName);
@@ -104,8 +129,8 @@ namespace Rastreador.Controllers
                     usuarioRepository.InsertOrUpdate(Usuario);
                     usuarioRepository.Save();
                     Roles.AddUserToRole(model.UserName, "usuario");
-                    FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
-                    return RedirectToAction("RegisterSuccess", "Account");
+                    //FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
+                    return RedirectToAction("RegisterSuccess", "Account", new { email = model.Email,token = (Guid)currentUser.ProviderUserKey });
                 }
                 else
                 {

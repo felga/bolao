@@ -478,14 +478,14 @@
     var mensagem = '@TempData["message"]';
     if(mensagem.length>0)
     {
-        jAlert(mensagem,"Central de apostas");
+        jAlert(mensagem,"Mensagem");
     }
     function ValidarApostas() {        
         var mySplitResult = botoes.split(",");
 
         for (i = 0; i < mySplitResult.length - 1; i++) {
             if (valButton(document.getElementsByName(mySplitResult[i])) == null) {
-                jAlert('Faça todas os palpites!', "Central de apostas");
+                jAlert('Faça todas os palpites!', "Mensagem");
                 return false;
             }
         }
@@ -497,7 +497,7 @@
 
         for (i = 0; i < mySplitResult.length - 1; i++) {
             if (valButton(document.getElementsByName(mySplitResult[i])) == null) {
-                jAlert('Faça todas os palpites!', "Central de apostas");
+                jAlert('Faça todas os palpites!', "Mensagem");
                 return false;
             }
         }
