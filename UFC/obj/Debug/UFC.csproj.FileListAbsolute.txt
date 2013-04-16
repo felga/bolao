@@ -7,3 +7,8 @@ C:\Users\FELGAMINI\Documents\Repositorio\CentralApostas\UFC\obj\Debug\UFC.dll
 C:\Users\FELGAMINI\Documents\Repositorio\CentralApostas\UFC\obj\Debug\UFC.pdb
 C:\Users\FELGAMINI\Documents\GitHub\bolao\UFC\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\FELGAMINI\Documents\GitHub\bolao\UFC\obj\Debug\UFC.dll
+C:\Users\FELGAMINI\Documents\GitHub\bolao\UFC\bin\UFC.dll
+C:\Users\FELGAMINI\Documents\GitHub\bolao\UFC\bin\UFC.pdb
+C:\Users\FELGAMINI\Documents\GitHub\bolao\UFC\bin\EntityFramework.dll
+C:\Users\FELGAMINI\Documents\GitHub\bolao\UFC\bin\EntityFramework.xml
+C:\Users\FELGAMINI\Documents\GitHub\bolao\UFC\obj\Debug\UFC.pdb
