@@ -1,0 +1,59 @@
+﻿<style type="text/css">
+.fonteerro {font-family: calibri, helvetica, serif; font-size: 14px; font-weight: bold; font-style: normal;color:#FF0000;}
+.inputlogin {border-bottom-style:none;border-width:0px;border-color:#ececec;width:190px;background-color:#ececec;}
+a:link {text-decoration: none ;color:#363636;}
+a:visited {text-decoration: none;color:#363636; }
+a:hover { text-decoration: none;color:#363636; }
+a:active { text-decoration: none;color:#363636; }
+</style>
+<script src="@Url.Content("~/Scripts/jquery-1.4.4.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.alerts.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery-ui-1.7.1.custom.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/ui.core.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/ui.dialog.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/ui.draggable.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/ui.resizable.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Scripts/jquery.alerts.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/themes/base/jquery-ui.css")" rel="stylesheet" type="text/css" />  
+<script>
+    function ValidaDados() {
+        if (document.getElementById("UserName").value == "") {
+            alert("Informe o campo login.");
+        }
+        else if (document.getElementById("Password").value == "") {
+            alert("Informe o campo senha.");
+        }
+        else {
+            document.forms[0].submit();
+        }
+    }
+</script>
+@if(Request.IsAuthenticated) {
+    UFC.Models.IUsuarioRepository usuarioRepository = new UFC.Models.UsuarioRepository();
+    UFC.Usuario oUsuario = usuarioRepository.All.Where(x => x.Login == User.Identity.Name).First();    
+    <td valign="middle" align="right" width="180" style="padding-top:2px;padding-left:10px;padding-right:10px;"><b>@oUsuario.Nome</b> [@Html.ActionLink("sair", "LogOff", "Account")]</td>
+}
+else {
+    using (Html.BeginForm("LogOn", "Account"))
+    {
+        @: <td valign="middle" align="right" width="645" style="padding-bottom:2px;padding-top:2px;padding-left:10px;padding-right:10px;"><span class="fontelogin">Login:</span>&nbsp; &nbsp;<input type="text" name="UserName" id="UserName" class="inputlogin"/>&nbsp; &nbsp;<span class="fontelogin">Senha:</span>&nbsp; &nbsp;<input type="password" name="Password" id="Password" class="inputlogin"/>&nbsp; &nbsp;<input onclick="javascript:ValidaDados();" type="button" value="Entrar" />&nbsp; &nbsp;<span class="fontelogin" onmouseover="this.style.cursor='hand'" onclick="$('#dialog').dialog('open');">|Registrar-se|</span></td>
+    }
+    @:<div class="demo">
+        <div id="dialog">
+	        <iframe scrolling="auto" frameborder="0" width="550" height="270" src="../Account/Register"></iframe>
+        </div>
+        <script type="text/javascript">
+            var box1 = document.getElementById('UserName');
+            box1.focus();
+            $(function () {
+                $("#dialog").dialog({
+                    height: 330,
+                    width: 600,
+                    resizable: false,
+                    draggable: false,
+                    autoOpen: false,
+                    title: "Registro"
+                });
+            });        
+        </script>
+}

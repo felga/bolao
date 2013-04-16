@@ -1,0 +1,35 @@
+@model UFC.RESULTADO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>RESULTADO</legend>
+
+    <div class="display-label">IDCOMPROVANTE</div>
+    <div class="display-field">@Model.IDCOMPROVANTE</div>
+
+    <div class="display-label">DATAAPOSTA</div>
+    <div class="display-field">@String.Format("{0:g}", Model.DATAAPOSTA)</div>
+
+    <div class="display-label">NOME</div>
+    <div class="display-field">@Model.NOME</div>
+
+    <div class="display-label">PONTUACAO</div>
+    <div class="display-field">@Model.PONTUACAO</div>
+
+    <div class="display-label">OBSERVACAO</div>
+    <div class="display-field">@Model.OBSERVACAO</div>
+
+    <div class="display-label">COMPROVANTE</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.COMPROVANTE).ToString()</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

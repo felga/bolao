@@ -1,0 +1,63 @@
+﻿ img { border: none; }
+
+.fonte {font-family: calibri, helvetica, serif; font-size: 40px; font-weight: bold;font-style: normal;color:#ffffff;}
+.fonte2 {font-family: calibri, helvetica, serif; font-size: 14px; font-weight: bold;font-style: normal;color:#949494;}
+.fonte4 {font-family: calibri, helvetica, serif; font-size: 14px; font-weight: bold;font-style: normal;color:#232323;}    
+.fonte5 {font-family: calibri, helvetica, serif; font-size: 16px; font-weight: bold;font-style: normal;color:#ffffff;}    
+.fonte5a {font-family: calibri, helvetica, serif; font-size: 16px; font-weight: bold;font-style: normal;color:#666666;} 
+.fonte6 {font-family: calibri, helvetica, serif; font-size: 12px; font-weight:normal;font-style: normal;color:#545454;}  
+.fonte7 {font-family: calibri, helvetica, serif; font-size: 12px; font-weight:normal;font-style: normal;color:#ffffff;}  
+ 
+.fonte30 {font-family: calibri, helvetica, serif; font-size: 14px; font-weight:normal;font-style: normal;color:#232323;}  
+  
+
+.lin1:link {text-decoration:none; color:#949494;}
+.lin1:visited {text-decoration: none; color:#949494;}
+.lin1:hover { text-decoration: none; color:#ffffff;}
+.lin1:active { text-decoration: none; color:#949494;}
+
+.lin2:link {text-decoration:none; color:#232323;}
+.lin2:visited {text-decoration: none; color:#232323;}
+.lin2:hover { text-decoration: none; color:#666666;}
+.lin2:active { text-decoration: none; color:#232323;}
+  
+#menusuperior a{
+	text-decoration:none;
+}
+
+#menusuperior a:link{
+	color:#949494;
+}
+#menusuperior a:visited{
+	color:#949494;
+}
+#menusuperior a:hover{
+	color:#ffffff;
+}
+#menusuperior a:active{
+	color:#949494;
+}
+ 
+
+#menulateral a{
+	text-decoration:none;
+}
+
+#menulateral a:link{
+	color:#232323;
+}
+#menulateral a:visited{
+	color:#232323;
+}
+#menulateral a:hover{
+	color:#666666;
+}
+#menulateral a:active{
+	color:#232323;
+}
+
+.cabecalho
+{
+    background-color:#fff;
+    color:#000;
+    }

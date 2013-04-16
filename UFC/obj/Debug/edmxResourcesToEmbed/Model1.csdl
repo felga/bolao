@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UFCModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="UFCEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="APOSTA" EntityType="UFCModel.APOSTA" />
+    <EntitySet Name="COMPROVANTE" EntityType="UFCModel.COMPROVANTE" />
+    <EntitySet Name="EVENTO" EntityType="UFCModel.EVENTO" />
+    <EntitySet Name="LUTA" EntityType="UFCModel.LUTA" />
+    <EntitySet Name="LUTADOR" EntityType="UFCModel.LUTADOR" />
+    <EntitySet Name="PATROCINIO" EntityType="UFCModel.PATROCINIO" />
+    <EntitySet Name="RESULTADO" EntityType="UFCModel.RESULTADO" />
+    <EntitySet Name="Usuario" EntityType="UFCModel.Usuario" />
+    <AssociationSet Name="FK_APOSTA_COMPROVANTE" Association="UFCModel.FK_APOSTA_COMPROVANTE">
+      <End Role="COMPROVANTE" EntitySet="COMPROVANTE" />
+      <End Role="APOSTA" EntitySet="APOSTA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_APOSTA_LUTA" Association="UFCModel.FK_APOSTA_LUTA">
+      <End Role="LUTA" EntitySet="LUTA" />
+      <End Role="APOSTA" EntitySet="APOSTA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_APOSTA_Usuario" Association="UFCModel.FK_APOSTA_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="APOSTA" EntitySet="APOSTA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COMPROVANTE_Usuario" Association="UFCModel.FK_COMPROVANTE_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="COMPROVANTE" EntitySet="COMPROVANTE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EVENTO" Association="UFCModel.FK_EVENTO">
+      <End Role="EVENTO" EntitySet="EVENTO" />
+      <End Role="LUTA" EntitySet="LUTA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LUTADOR1" Association="UFCModel.FK_LUTADOR1">
+      <End Role="LUTADOR" EntitySet="LUTADOR" />
+      <End Role="LUTA" EntitySet="LUTA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LUTADOR2" Association="UFCModel.FK_LUTADOR2">
+      <End Role="LUTADOR" EntitySet="LUTADOR" />
+      <End Role="LUTA" EntitySet="LUTA" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="APOSTA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="IDLUTA" Nullable="false" />
+    <Property Type="Int16" Name="LUTADORVENCEDOR" Nullable="false" />
+    <Property Type="Guid" Name="IDUSUARIO" Nullable="false" />
+    <Property Type="Int32" Name="IDCOMPROVANTE" Nullable="false" />
+    <Property Type="Int16" Name="ROUND" Nullable="false" />
+    <Property Type="Boolean" Name="RESULTADO" Nullable="false" />
+    <Property Type="String" Name="MODO" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Int16" Name="PONTOS" Nullable="false" />
+    <NavigationProperty Name="COMPROVANTE" Relationship="UFCModel.FK_APOSTA_COMPROVANTE" FromRole="APOSTA" ToRole="COMPROVANTE" />
+    <NavigationProperty Name="LUTA" Relationship="UFCModel.FK_APOSTA_LUTA" FromRole="APOSTA" ToRole="LUTA" />
+    <NavigationProperty Name="Usuario" Relationship="UFCModel.FK_APOSTA_Usuario" FromRole="APOSTA" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="COMPROVANTE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="DateTime" Name="DATA" Nullable="false" />
+    <Property Type="String" Name="TIPO" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Type="Double" Name="VALOR" Nullable="false" />
+    <Property Type="Guid" Name="IDUSUARIO" Nullable="false" />
+    <NavigationProperty Name="APOSTA" Relationship="UFCModel.FK_APOSTA_COMPROVANTE" FromRole="COMPROVANTE" ToRole="APOSTA" />
+    <NavigationProperty Name="Usuario" Relationship="UFCModel.FK_COMPROVANTE_Usuario" FromRole="COMPROVANTE" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="EVENTO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="NOME" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TITULO" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="DATA" Nullable="false" />
+    <Property Type="Boolean" Name="LIBERADO" Nullable="false" />
+    <Property Type="Double" Name="VALOR" Nullable="false" />
+    <Property Type="String" Name="CAMINHO_POSTER" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="MULTIPLASAPOSTAS" Nullable="false" />
+    <Property Type="Boolean" Name="RESULTADODISPONIVEL" Nullable="false" />
+    <NavigationProperty Name="LUTA" Relationship="UFCModel.FK_EVENTO" FromRole="EVENTO" ToRole="LUTA" />
+  </EntityType>
+  <EntityType Name="LUTA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="IDLUTADOR1" Nullable="false" />
+    <Property Type="Int32" Name="IDLUTADOR2" Nullable="false" />
+    <Property Type="Int32" Name="IDEVENTO" Nullable="false" />
+    <Property Type="Int16" Name="ROUNDS" Nullable="false" />
+    <NavigationProperty Name="APOSTA" Relationship="UFCModel.FK_APOSTA_LUTA" FromRole="LUTA" ToRole="APOSTA" />
+    <NavigationProperty Name="EVENTO" Relationship="UFCModel.FK_EVENTO" FromRole="LUTA" ToRole="EVENTO" />
+    <NavigationProperty Name="LUTADOR" Relationship="UFCModel.FK_LUTADOR1" FromRole="LUTA" ToRole="LUTADOR" />
+    <NavigationProperty Name="LUTADOR1" Relationship="UFCModel.FK_LUTADOR2" FromRole="LUTA" ToRole="LUTADOR" />
+  </EntityType>
+  <EntityType Name="LUTADOR">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="NOME" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PAGINA" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CAMINHOFOTO" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="LUTA" Relationship="UFCModel.FK_LUTADOR1" FromRole="LUTADOR" ToRole="LUTA" />
+    <NavigationProperty Name="LUTA1" Relationship="UFCModel.FK_LUTADOR2" FromRole="LUTADOR" ToRole="LUTA" />
+  </EntityType>
+  <EntityType Name="PATROCINIO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="CAMINHOBANNER" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PREMIO" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="VALOR" Nullable="false" />
+    <Property Type="Int32" Name="IDEVENTO" Nullable="false" />
+    <Property Type="String" Name="PATROCINADOR" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LINKBANNER" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="RESULTADO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="IDCOMPROVANTE" />
+    <Property Type="DateTime" Name="DATAAPOSTA" Nullable="false" />
+    <Property Type="String" Name="NOME" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="PONTUACAO" Nullable="false" />
+    <Property Type="String" Name="OBSERVACAO" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="IDEVENTO" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Guid" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Nome" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Login" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="DataCadastro" Nullable="false" />
+    <NavigationProperty Name="APOSTA" Relationship="UFCModel.FK_APOSTA_Usuario" FromRole="Usuario" ToRole="APOSTA" />
+    <NavigationProperty Name="COMPROVANTE" Relationship="UFCModel.FK_COMPROVANTE_Usuario" FromRole="Usuario" ToRole="COMPROVANTE" />
+  </EntityType>
+  <Association Name="FK_APOSTA_COMPROVANTE">
+    <End Type="UFCModel.COMPROVANTE" Role="COMPROVANTE" Multiplicity="1" />
+    <End Type="UFCModel.APOSTA" Role="APOSTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMPROVANTE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="APOSTA">
+        <PropertyRef Name="IDCOMPROVANTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_APOSTA_LUTA">
+    <End Type="UFCModel.LUTA" Role="LUTA" Multiplicity="1" />
+    <End Type="UFCModel.APOSTA" Role="APOSTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LUTA">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="APOSTA">
+        <PropertyRef Name="IDLUTA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_APOSTA_Usuario">
+    <End Type="UFCModel.Usuario" Role="Usuario" Multiplicity="1" />
+    <End Type="UFCModel.APOSTA" Role="APOSTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="APOSTA">
+        <PropertyRef Name="IDUSUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COMPROVANTE_Usuario">
+    <End Type="UFCModel.Usuario" Role="Usuario" Multiplicity="1" />
+    <End Type="UFCModel.COMPROVANTE" Role="COMPROVANTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="COMPROVANTE">
+        <PropertyRef Name="IDUSUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EVENTO">
+    <End Type="UFCModel.EVENTO" Role="EVENTO" Multiplicity="1" />
+    <End Type="UFCModel.LUTA" Role="LUTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EVENTO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LUTA">
+        <PropertyRef Name="IDEVENTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LUTADOR1">
+    <End Type="UFCModel.LUTADOR" Role="LUTADOR" Multiplicity="1" />
+    <End Type="UFCModel.LUTA" Role="LUTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LUTADOR">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LUTA">
+        <PropertyRef Name="IDLUTADOR1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LUTADOR2">
+    <End Type="UFCModel.LUTADOR" Role="LUTADOR" Multiplicity="1" />
+    <End Type="UFCModel.LUTA" Role="LUTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LUTADOR">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LUTA">
+        <PropertyRef Name="IDLUTADOR2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

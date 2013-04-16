@@ -1,0 +1,38 @@
+@model UFC.RESULTADO
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>RESULTADO</legend>
+
+    <div class="display-label">IDCOMPROVANTE</div>
+    <div class="display-field">@Model.IDCOMPROVANTE</div>
+
+    <div class="display-label">DATAAPOSTA</div>
+    <div class="display-field">@String.Format("{0:g}", Model.DATAAPOSTA)</div>
+
+    <div class="display-label">NOME</div>
+    <div class="display-field">@Model.NOME</div>
+
+    <div class="display-label">PONTUACAO</div>
+    <div class="display-field">@Model.PONTUACAO</div>
+
+    <div class="display-label">OBSERVACAO</div>
+    <div class="display-field">@Model.OBSERVACAO</div>
+
+    <div class="display-label">COMPROVANTE</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.COMPROVANTE).ToString()</div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+
+

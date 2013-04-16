@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UFCModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="UFCModelStoreContainer">
+    <EntitySet Name="APOSTA" EntityType="UFCModel.Store.APOSTA" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="COMPROVANTE" EntityType="UFCModel.Store.COMPROVANTE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EVENTO" EntityType="UFCModel.Store.EVENTO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LUTA" EntityType="UFCModel.Store.LUTA" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LUTADOR" EntityType="UFCModel.Store.LUTADOR" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PATROCINIO" EntityType="UFCModel.Store.PATROCINIO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RESULTADO" EntityType="UFCModel.Store.RESULTADO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Usuario" EntityType="UFCModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_APOSTA_COMPROVANTE" Association="UFCModel.Store.FK_APOSTA_COMPROVANTE">
+      <End Role="COMPROVANTE" EntitySet="COMPROVANTE" />
+      <End Role="APOSTA" EntitySet="APOSTA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_APOSTA_LUTA" Association="UFCModel.Store.FK_APOSTA_LUTA">
+      <End Role="LUTA" EntitySet="LUTA" />
+      <End Role="APOSTA" EntitySet="APOSTA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_APOSTA_Usuario" Association="UFCModel.Store.FK_APOSTA_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="APOSTA" EntitySet="APOSTA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COMPROVANTE_Usuario" Association="UFCModel.Store.FK_COMPROVANTE_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="COMPROVANTE" EntitySet="COMPROVANTE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EVENTO" Association="UFCModel.Store.FK_EVENTO">
+      <End Role="EVENTO" EntitySet="EVENTO" />
+      <End Role="LUTA" EntitySet="LUTA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LUTADOR1" Association="UFCModel.Store.FK_LUTADOR1">
+      <End Role="LUTADOR" EntitySet="LUTADOR" />
+      <End Role="LUTA" EntitySet="LUTA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LUTADOR2" Association="UFCModel.Store.FK_LUTADOR2">
+      <End Role="LUTADOR" EntitySet="LUTADOR" />
+      <End Role="LUTA" EntitySet="LUTA" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="APOSTA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IDLUTA" Type="int" Nullable="false" />
+    <Property Name="LUTADORVENCEDOR" Type="smallint" Nullable="false" />
+    <Property Name="IDUSUARIO" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IDCOMPROVANTE" Type="int" Nullable="false" />
+    <Property Name="ROUND" Type="smallint" Nullable="false" />
+    <Property Name="RESULTADO" Type="bit" Nullable="false" />
+    <Property Name="MODO" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="PONTOS" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="COMPROVANTE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DATA" Type="datetime" Nullable="false" />
+    <Property Name="TIPO" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="VALOR" Type="float" Nullable="false" />
+    <Property Name="IDUSUARIO" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EVENTO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NOME" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="TITULO" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="DATA" Type="datetime" Nullable="false" />
+    <Property Name="LIBERADO" Type="bit" Nullable="false" />
+    <Property Name="VALOR" Type="float" Nullable="false" />
+    <Property Name="CAMINHO_POSTER" Type="varchar" Nullable="false" MaxLength="1000" />
+    <Property Name="MULTIPLASAPOSTAS" Type="bit" Nullable="false" />
+    <Property Name="RESULTADODISPONIVEL" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LUTA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IDLUTADOR1" Type="int" Nullable="false" />
+    <Property Name="IDLUTADOR2" Type="int" Nullable="false" />
+    <Property Name="IDEVENTO" Type="int" Nullable="false" />
+    <Property Name="ROUNDS" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LUTADOR">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NOME" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="PAGINA" Type="varchar" Nullable="false" MaxLength="300" />
+    <Property Name="CAMINHOFOTO" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="PATROCINIO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CAMINHOBANNER" Type="varchar" Nullable="false" MaxLength="1000" />
+    <Property Name="PREMIO" Type="varchar" Nullable="false" MaxLength="1000" />
+    <Property Name="VALOR" Type="float" Nullable="false" />
+    <Property Name="IDEVENTO" Type="int" Nullable="false" />
+    <Property Name="PATROCINADOR" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="LINKBANNER" Type="varchar" Nullable="false" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="RESULTADO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IDCOMPROVANTE" Type="int" />
+    <Property Name="DATAAPOSTA" Type="datetime" Nullable="false" />
+    <Property Name="NOME" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="PONTUACAO" Type="int" Nullable="false" />
+    <Property Name="OBSERVACAO" Type="varchar" MaxLength="500" />
+    <Property Name="IDEVENTO" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="Login" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="DataCadastro" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_APOSTA_COMPROVANTE">
+    <End Role="COMPROVANTE" Type="UFCModel.Store.COMPROVANTE" Multiplicity="1" />
+    <End Role="APOSTA" Type="UFCModel.Store.APOSTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMPROVANTE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="APOSTA">
+        <PropertyRef Name="IDCOMPROVANTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_APOSTA_LUTA">
+    <End Role="LUTA" Type="UFCModel.Store.LUTA" Multiplicity="1" />
+    <End Role="APOSTA" Type="UFCModel.Store.APOSTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LUTA">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="APOSTA">
+        <PropertyRef Name="IDLUTA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_APOSTA_Usuario">
+    <End Role="Usuario" Type="UFCModel.Store.Usuario" Multiplicity="1" />
+    <End Role="APOSTA" Type="UFCModel.Store.APOSTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="APOSTA">
+        <PropertyRef Name="IDUSUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COMPROVANTE_Usuario">
+    <End Role="Usuario" Type="UFCModel.Store.Usuario" Multiplicity="1" />
+    <End Role="COMPROVANTE" Type="UFCModel.Store.COMPROVANTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="COMPROVANTE">
+        <PropertyRef Name="IDUSUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EVENTO">
+    <End Role="EVENTO" Type="UFCModel.Store.EVENTO" Multiplicity="1" />
+    <End Role="LUTA" Type="UFCModel.Store.LUTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EVENTO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LUTA">
+        <PropertyRef Name="IDEVENTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LUTADOR1">
+    <End Role="LUTADOR" Type="UFCModel.Store.LUTADOR" Multiplicity="1" />
+    <End Role="LUTA" Type="UFCModel.Store.LUTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LUTADOR">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LUTA">
+        <PropertyRef Name="IDLUTADOR1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LUTADOR2">
+    <End Role="LUTADOR" Type="UFCModel.Store.LUTADOR" Multiplicity="1" />
+    <End Role="LUTA" Type="UFCModel.Store.LUTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LUTADOR">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LUTA">
+        <PropertyRef Name="IDLUTADOR2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,18 @@
+@model UFC.Usuario
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="fonte13">
+    @Html.LabelFor(model => model.NOME)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.NOME)
+    @Html.ValidationMessageFor(model => model.NOME)
+</div>
+<div class="fonte13">
+    @Html.LabelFor(model => model.EMAIL)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.EMAIL)
+    @Html.ValidationMessageFor(model => model.EMAIL)
+</div>

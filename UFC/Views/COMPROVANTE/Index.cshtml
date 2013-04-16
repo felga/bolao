@@ -1,0 +1,65 @@
+@model IEnumerable<UFC.COMPROVANTE>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            DATA
+        </th>
+        <th>
+            TIPO
+        </th>
+        <th>
+            VALOR
+        </th>
+        <th>
+            IDUSUARIO
+        </th>
+        <th>
+            APOSTA
+        </th>
+        <th>
+            Usuario
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+        <td>
+			@String.Format("{0:g}", item.DATA)
+        </td>
+        <td>
+			@item.TIPO
+        </td>
+        <td>
+			@String.Format("{0:F}", item.VALOR)
+        </td>
+        <td>
+			@item.IDUSUARIO
+        </td>
+        <td>
+			@(item.APOSTA == null ? "None" : item.APOSTA.Count.ToString())
+        </td>
+        <td>
+			@Html.DisplayTextFor(_ => item.Usuario).ToString()
+        </td>
+    </tr>
+}
+
+</table>
+
+

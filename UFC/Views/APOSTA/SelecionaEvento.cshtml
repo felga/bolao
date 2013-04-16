@@ -1,0 +1,52 @@
+@model IEnumerable<UFC.APOSTA>
+    <style type="text/css">
+    .listaeventos:link {text-decoration: none ;color:#969696;}
+    .listaeventos:visited {text-decoration: none;color:#969696; }
+    .listaeventos:hover { text-decoration: none;color:#969696; }
+    .listaeventos:active { text-decoration: none;color:#969696; }
+    </style>
+@{
+    ViewBag.Title = "Eventos Disponíveis";
+    IEnumerable<UFC.EVENTO> oEventos = ViewBag.PossibleEvento;
+    foreach (UFC.EVENTO evento in oEventos)
+    {
+        <br />
+        <table align="center" cellpadding="0" cellspacing="0" style="border:1pt solid white;">
+            <tr>
+                <td class="cabecalho" align="center" style="font-size:18pt;">
+                    @evento.TITULO
+                </td>
+            </tr>
+            <tr>
+                <td>
+                @{
+               if (evento.VALOR == null || evento.VALOR == 0)
+               {
+                        <DIV style='position:relative;'>
+                        <a class="listaeventos" href="Index?Evento=@evento.ID"><img width="500" src="@evento.CAMINHO_POSTER" alt="@evento.TITULO" /></a>
+                        <DIV style='position:absolute; top:0px; left:0px; color:red;'><a class="listaeventos" href="Index?Evento=@evento.ID"><img width="500" src="/imgs/selo.gif" alt="@evento.TITULO" /></a>                        
+                        </DIV>                        
+                        </DIV>
+               }
+               else
+               { 
+                        <DIV style='position:relative;'>
+                        <a class="listaeventos" href="Index?Evento=@evento.ID"><img width="500" src="@evento.CAMINHO_POSTER" alt="@evento.TITULO" /></a>
+                        <DIV style='position:absolute; top:0px; left:0px; color:red;'><a class="listaeventos" href="Index?Evento=@evento.ID"><img width="500" src="/imgs/selo_vazio.gif" alt="@evento.TITULO" /></a>
+                        <DIV style="position:absolute; top:3px; left:450px; color:white;font-size:16px;font-family: Impact, Charcoal, sans-serif;" align="center">R$&nbsp;@evento.VALOR.ToString("0.00")</DIV>
+                        </DIV>
+                        </DIV>        
+               }
+                 }  
+                </td>
+            </tr>
+        </table>
+    <br />
+    }  
+}
+<script type="text/javascript">
+    var mensagem = '@TempData["message"]';
+    if (mensagem.length > 0) {
+        jAlert(mensagem,"Central de apostas");
+    }
+</script>

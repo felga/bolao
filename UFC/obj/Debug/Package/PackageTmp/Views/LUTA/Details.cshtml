@@ -1,0 +1,38 @@
+@model UFC.LUTA
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>LUTA</legend>
+
+    <div class="display-label">IDLUTADOR1</div>
+    <div class="display-field">@Model.IDLUTADOR1</div>
+
+    <div class="display-label">IDLUTADOR2</div>
+    <div class="display-field">@Model.IDLUTADOR2</div>
+
+    <div class="display-label">IDEVENTO</div>
+    <div class="display-field">@Model.IDEVENTO</div>
+
+    <div class="display-label">APOSTA</div>
+    <div class="display-field">@(Model.APOSTA == null ? "None" : Model.APOSTA.Count.ToString())</div>
+
+    <div class="display-label">EVENTO</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.EVENTO).ToString()</div>
+
+    <div class="display-label">LUTADOR</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.LUTADOR).ToString()</div>
+
+    <div class="display-label">LUTADOR1</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.LUTADOR1).ToString()</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

@@ -1,0 +1,38 @@
+@model UFC.COMPROVANTE
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>COMPROVANTE</legend>
+
+    <div class="display-label">DATA</div>
+    <div class="display-field">@String.Format("{0:g}", Model.DATA)</div>
+
+    <div class="display-label">TIPO</div>
+    <div class="display-field">@Model.TIPO</div>
+
+    <div class="display-label">VALOR</div>
+    <div class="display-field">@String.Format("{0:F}", Model.VALOR)</div>
+
+    <div class="display-label">IDUSUARIO</div>
+    <div class="display-field">@Model.IDUSUARIO</div>
+
+    <div class="display-label">APOSTA</div>
+    <div class="display-field">@(Model.APOSTA == null ? "None" : Model.APOSTA.Count.ToString())</div>
+
+    <div class="display-label">Usuario</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.Usuario).ToString()</div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+
+

@@ -1,0 +1,39 @@
+@model UFC.Usuario
+@{ Layout = "~/Views/Shared/_LayoutVazio.cshtml";}
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+		@Html.Partial("_CreateOrEdit", Model)
+        <div class="fonte13">
+            @Html.LabelFor(model => model.Login)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Login)
+            @Html.ValidationMessageFor(model => model.Login)
+        </div>
+        <div class="fonte13">
+            @Html.LabelFor(model => model.SENHA)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(model => model.SENHA, new { @class = "inputlogininterno", @style = "width:200px", @maxlength = 10 })
+            @Html.ValidationMessageFor(model => model.SENHA)
+        </div>
+        <div class="fonte13">
+            @Html.LabelFor(model => model.ConfirmPassword)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "inputlogininterno", @style = "width:200px", @maxlength = 10 })
+            @Html.ValidationMessageFor(model => model.ConfirmPassword)
+        </div>  
+        <p>
+            <input type="submit" value="Criar" style="width:95px"/>&nbsp;&nbsp;&nbsp;<input type="button" value="Cancelar" style="width:95px" onclick="parent.$('#dialog').dialog('close');"; />
+        </p>
+}
+    <script type="text/javascript">
+    var mensagem = '@TempData["message"]';
+    if(mensagem.length>0) {
+        jAlert(mensagem, "Central de apostas", function () {
+            parent.$('#dialog').dialog('close');
+        });           
+    }
+    </script>

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UFCModelStoreContainer" CdmEntityContainer="UFCEntities">
+    <EntitySetMapping Name="APOSTA">
+      <EntityTypeMapping TypeName="UFCModel.APOSTA">
+        <MappingFragment StoreEntitySet="APOSTA">
+          <ScalarProperty Name="PONTOS" ColumnName="PONTOS" />
+          <ScalarProperty Name="MODO" ColumnName="MODO" />
+          <ScalarProperty Name="RESULTADO" ColumnName="RESULTADO" />
+          <ScalarProperty Name="ROUND" ColumnName="ROUND" />
+          <ScalarProperty Name="IDCOMPROVANTE" ColumnName="IDCOMPROVANTE" />
+          <ScalarProperty Name="IDUSUARIO" ColumnName="IDUSUARIO" />
+          <ScalarProperty Name="LUTADORVENCEDOR" ColumnName="LUTADORVENCEDOR" />
+          <ScalarProperty Name="IDLUTA" ColumnName="IDLUTA" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COMPROVANTE">
+      <EntityTypeMapping TypeName="UFCModel.COMPROVANTE">
+        <MappingFragment StoreEntitySet="COMPROVANTE">
+          <ScalarProperty Name="IDUSUARIO" ColumnName="IDUSUARIO" />
+          <ScalarProperty Name="VALOR" ColumnName="VALOR" />
+          <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+          <ScalarProperty Name="DATA" ColumnName="DATA" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EVENTO">
+      <EntityTypeMapping TypeName="UFCModel.EVENTO">
+        <MappingFragment StoreEntitySet="EVENTO">
+          <ScalarProperty Name="RESULTADODISPONIVEL" ColumnName="RESULTADODISPONIVEL" />
+          <ScalarProperty Name="MULTIPLASAPOSTAS" ColumnName="MULTIPLASAPOSTAS" />
+          <ScalarProperty Name="CAMINHO_POSTER" ColumnName="CAMINHO_POSTER" />
+          <ScalarProperty Name="VALOR" ColumnName="VALOR" />
+          <ScalarProperty Name="LIBERADO" ColumnName="LIBERADO" />
+          <ScalarProperty Name="DATA" ColumnName="DATA" />
+          <ScalarProperty Name="TITULO" ColumnName="TITULO" />
+          <ScalarProperty Name="NOME" ColumnName="NOME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LUTA">
+      <EntityTypeMapping TypeName="UFCModel.LUTA">
+        <MappingFragment StoreEntitySet="LUTA">
+          <ScalarProperty Name="ROUNDS" ColumnName="ROUNDS" />
+          <ScalarProperty Name="IDEVENTO" ColumnName="IDEVENTO" />
+          <ScalarProperty Name="IDLUTADOR2" ColumnName="IDLUTADOR2" />
+          <ScalarProperty Name="IDLUTADOR1" ColumnName="IDLUTADOR1" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LUTADOR">
+      <EntityTypeMapping TypeName="UFCModel.LUTADOR">
+        <MappingFragment StoreEntitySet="LUTADOR">
+          <ScalarProperty Name="CAMINHOFOTO" ColumnName="CAMINHOFOTO" />
+          <ScalarProperty Name="PAGINA" ColumnName="PAGINA" />
+          <ScalarProperty Name="NOME" ColumnName="NOME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PATROCINIO">
+      <EntityTypeMapping TypeName="UFCModel.PATROCINIO">
+        <MappingFragment StoreEntitySet="PATROCINIO">
+          <ScalarProperty Name="LINKBANNER" ColumnName="LINKBANNER" />
+          <ScalarProperty Name="PATROCINADOR" ColumnName="PATROCINADOR" />
+          <ScalarProperty Name="IDEVENTO" ColumnName="IDEVENTO" />
+          <ScalarProperty Name="VALOR" ColumnName="VALOR" />
+          <ScalarProperty Name="PREMIO" ColumnName="PREMIO" />
+          <ScalarProperty Name="CAMINHOBANNER" ColumnName="CAMINHOBANNER" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RESULTADO">
+      <EntityTypeMapping TypeName="UFCModel.RESULTADO">
+        <MappingFragment StoreEntitySet="RESULTADO">
+          <ScalarProperty Name="IDEVENTO" ColumnName="IDEVENTO" />
+          <ScalarProperty Name="OBSERVACAO" ColumnName="OBSERVACAO" />
+          <ScalarProperty Name="PONTUACAO" ColumnName="PONTUACAO" />
+          <ScalarProperty Name="NOME" ColumnName="NOME" />
+          <ScalarProperty Name="DATAAPOSTA" ColumnName="DATAAPOSTA" />
+          <ScalarProperty Name="IDCOMPROVANTE" ColumnName="IDCOMPROVANTE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="UFCModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="DataCadastro" ColumnName="DataCadastro" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

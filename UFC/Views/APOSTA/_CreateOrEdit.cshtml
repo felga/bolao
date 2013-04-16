@@ -1,0 +1,28 @@
+@model UFC.APOSTA
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.IDLUTA)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.IDLUTA)
+    @Html.ValidationMessageFor(model => model.IDLUTA)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.LUTADORVENCEDOR)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.LUTADORVENCEDOR)
+    @Html.ValidationMessageFor(model => model.LUTADORVENCEDOR)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.IDUSUARIO)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.IDUSUARIO)
+    @Html.ValidationMessageFor(model => model.IDUSUARIO)
+</div>
+

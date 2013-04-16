@@ -1,0 +1,57 @@
+@model UFC.PATROCINIO
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.CAMINHOBANNER)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.CAMINHOBANNER)
+    @Html.ValidationMessageFor(model => model.CAMINHOBANNER)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.LINKBANNER)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.LINKBANNER)
+    @Html.ValidationMessageFor(model => model.LINKBANNER)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.PREMIO)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.PREMIO)
+    @Html.ValidationMessageFor(model => model.PREMIO)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.PATROCINADOR)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.PATROCINADOR)
+    @Html.ValidationMessageFor(model => model.PATROCINADOR)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.VALOR)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.VALOR)
+    @Html.ValidationMessageFor(model => model.VALOR)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.IDEVENTO)
+</div>
+<div class="editor-field">            
+    @Html.DropDownListFor(model => model.IDEVENTO, ((IEnumerable<UFC.EVENTO>)ViewBag.PossibleEvento).Select(option => new SelectListItem
+    {
+        Text = option.NOME,
+        Value = option.ID.ToString(),
+        Selected = (Model != null) && (option.ID == Model.IDEVENTO)
+    }), "Escolha...", new { @class = "inputlogininterno", @style = "width:250px" })
+    @Html.ValidationMessageFor(model => model.IDEVENTO)
+</div>
+

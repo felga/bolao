@@ -1,0 +1,71 @@
+@model IEnumerable<UFC.LUTA>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            IDLUTADOR1
+        </th>
+        <th>
+            IDLUTADOR2
+        </th>
+        <th>
+            IDEVENTO
+        </th>
+        <th>
+            APOSTA
+        </th>
+        <th>
+            EVENTO
+        </th>
+        <th>
+            LUTADOR
+        </th>
+        <th>
+            LUTADOR1
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+        <td>
+			@item.IDLUTADOR1
+        </td>
+        <td>
+			@item.IDLUTADOR2
+        </td>
+        <td>
+			@item.IDEVENTO
+        </td>
+        <td>
+			@(item.APOSTA == null ? "None" : item.APOSTA.Count.ToString())
+        </td>
+        <td>
+			@item.EVENTO.NOME
+        </td>
+        <td>
+			@item.LUTADOR.NOME
+        </td>
+        <td>
+			@item.LUTADOR1.NOME
+        </td>
+    </tr>
+}
+
+</table>
+
+

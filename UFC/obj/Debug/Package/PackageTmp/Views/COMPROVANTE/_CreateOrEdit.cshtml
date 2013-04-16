@@ -1,0 +1,36 @@
+@model UFC.COMPROVANTE
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.DATA)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.DATA)
+    @Html.ValidationMessageFor(model => model.DATA)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.TIPO)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.TIPO)
+    @Html.ValidationMessageFor(model => model.TIPO)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.VALOR)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.VALOR)
+    @Html.ValidationMessageFor(model => model.VALOR)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.IDUSUARIO)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.IDUSUARIO)
+    @Html.ValidationMessageFor(model => model.IDUSUARIO)
+</div>
+

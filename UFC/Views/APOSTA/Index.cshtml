@@ -1,0 +1,541 @@
+@model IEnumerable<UFC.APOSTA>
+<style type="text/css">
+.nomelutador {font-family: calibri, helvetica, serif; font-size: 20px; font-weight: normal;font-style: normal;color:#ffffff;}           
+.fontetitulo {font-family: calibri, helvetica, serif; font-size: 35px; font-weight: bold;font-style: normal;color:#ffffff;}           
+.titulopalpite {font-family: calibri, helvetica, serif; font-size: 16px; font-weight: normal;font-style: normal;color:#ffffff;}
+</style>
+<script type="text/javascript">
+    var botoes = "";
+</script>
+
+@{
+    UFC.Usuario oUsuario = null;
+    if (User.Identity.IsAuthenticated)
+    {
+        UFC.Models.IUsuarioRepository usuarioRepository = new UFC.Models.UsuarioRepository();
+        oUsuario = usuarioRepository.All.Where(x => x.Login == User.Identity.Name).First();
+    }
+
+    UFC.EVENTO oEvento = (UFC.EVENTO)TempData["EventoSelecionado"];
+    ViewBag.Title = oEvento.TITULO;
+
+    UFC.Models.IAPOSTARepository apostaRepository = new UFC.Models.APOSTARepository();
+    UFC.Models.IPATROCINIORepository patrocinioRepository = new UFC.Models.PATROCINIORepository();
+ }
+    <table border="0" align="center">
+        @{
+            foreach (UFC.PATROCINIO patrocinio in patrocinioRepository.All.Where(x => x.IDEVENTO == oEvento.ID))
+            {
+            <tr>
+                <td align="center">
+                    <a href="@patrocinio.LINKBANNER" target="_blank"><img src="@patrocinio.CAMINHOBANNER" alt="@patrocinio.PATROCINADOR" /></a>
+                </td>
+            </tr>
+            <tr style="height:5px;">
+                <td></td>
+            </tr>            
+            }
+        }
+        <tr>
+            <td>
+                <img width="550" src="@oEvento.CAMINHO_POSTER" alt="@oEvento.TITULO" />
+            </td>
+        </tr>
+        <tr style="height:5px;">
+            <td></td>
+        </tr>
+    </table>
+    <table cellpadding="0" cellspacing="0" style="border:1px solid black;">
+        <tr>
+            <td id="menupalpites" align="center" style="background-image:url(/imgs/bg_menu_dir_vermelho.gif);height:43px;width:150px;cursor:pointer;" class="fonte5" onclick="ativadiv('palpites');">Palpites</td>
+            <td style="width:1px;background-color:#000000;"><img src="/imgs/sp.gif" width="1" /></td>
+            <td id="menudetalhes" align="center" style="background-image:url(/imgs/bg_menu_baixo_cinza.gif);height:43px;width:150px;cursor:pointer;" class="fonte5a" onclick="ativadiv('detalhes');">Detalhes</td>
+            <td style="width:1px;background-color:#000000;"><img src="/imgs/sp.gif" width="1" /></td>
+            <td id="menuresultados" align="center" style="background-image:url(/imgs/bg_menu_baixo_cinza.gif);height:43px;width:150px;cursor:pointer;" class="fonte5a" onclick="ativadiv('resultados');">Resultados</td>
+            <td style="width:1px;background-color:#000000;"><img src="/imgs/sp.gif" width="1" /></td>
+            <td id="menumeuspalpites" align="center" style="background-image:url(/imgs/bg_menu_baixo_cinza.gif);height:43px;width:150px;cursor:pointer;" class="fonte5a" onclick="ativadiv('meuspalpites');">Meus palpites</td>
+            <td style="background-color:#000000;"></td>
+        </tr>
+        <tr>
+            <td colspan="8" style="height:1px;"></td>
+        </tr>
+        <tr>
+            <td colspan="8" valign="top" style="width:100%;background-color:#282828;"> 
+
+            <div id="palpites">
+            <br />
+            <form action="Create" method="post">
+@{     
+     <div align="center">
+    @{
+        if (oUsuario != null)
+        {
+@*            if (oUsuario.SALDO < oEvento.VALOR)
+            {
+                <p>Seu saldo não é suficiente para realizar palpites nesse evento, adicione créditos e tente novamente.</p>
+            }
+            else
+            {*@
+                if (apostaRepository.All.Where(x => x.LUTA.EVENTO.ID == oEvento.ID && x.IDUSUARIO == oUsuario.Id).Count() > 0 && oEvento.MULTIPLASAPOSTAS == false)
+                {
+                    <p>Você já realizou seus palpites para esse evento. Acesse a aba Meus Palpites para vê-los.</p>
+                }
+                else
+                {
+                    if (oEvento.DATA <= DateTime.Now || oEvento.RESULTADODISPONIVEL)
+                    {
+                        <p>Os palpites para esse evento estão encerrados, acesse a aba de resultados para ver o(s) ganhador(es).</p>
+                    }
+                    else
+                    {
+                        <input type="submit" value="Enviar palpites" onclick="return ValidarApostas()"/>
+                    }
+                }
+            //}
+        }
+        else
+        {
+            <p>É necessário estar logado para realizar palpites neste evento.</p>
+        }
+    }
+    </div>
+                                       
+    @Html.Hidden("numeroevento", oEvento.ID.ToString())
+    @Html.Hidden("resultado", "0")
+    IEnumerable<UFC.LUTA> oLutas = oEvento.LUTA;
+    foreach (UFC.LUTA luta in oLutas)
+    {
+            <script type="text/javascript">
+                botoes += "@luta.ID.ToString()" + ",";
+            </script>
+    
+                      List<SelectListItem> listamodos = new List<SelectListItem>();
+                      listamodos.Add(new SelectListItem
+                      {
+                          Text = "Nocaute",
+                          Value = "Nocaute",
+                          Selected = true
+                      });
+                      listamodos.Add(new SelectListItem
+                      {
+                          Text = "Finalização",
+                          Value = "Finalização"
+                      });
+                      listamodos.Add(new SelectListItem
+                      {
+                          Text = "Pontos",
+                          Value = "Pontos"
+                      });
+                      listamodos.Add(new SelectListItem
+                      {
+                          Text = "Desclassificação",
+                          Value = "Desclassificação"
+                      });
+                      List<SelectListItem> items = new List<SelectListItem>();
+                      items.Add(new SelectListItem
+                      {
+                          Text = "1º Round",
+                          Value = "1",
+                          Selected = true
+                      });
+                      items.Add(new SelectListItem
+                      {
+                          Text = "2º Round",
+                          Value = "2"
+                      });
+                      items.Add(new SelectListItem
+                      {
+                          Text = "3º Round",
+                          Value = "3"
+                      });
+                      if (luta.ROUNDS > 3)
+                      {
+                          items.Add(new SelectListItem
+                          {
+                              Text = "4º Round",
+                              Value = "4"
+                          });
+                          items.Add(new SelectListItem
+                          {
+                              Text = "5º Round",
+                              Value = "5"
+                          });
+                      }        
+
+     <table border="0" align="center" cellpadding="0" cellspacing="10" width="100%" style="background-color:#282828;">
+                    <tr>                                                                
+                        <td align="center" valign="top" colspan="2">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td><img src="/imgs/lateral_esq_aposta_interna.gif" /></td>  
+                                <td>
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td style="background-image:url('/imgs/bg_topo_aposta_interna.gif');"><img alt="" src="/imgs/sp.gif" height="17" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="height:391px;">
+                                                <table border="0" cellpadding="0" cellspacing="0">
+                                                    <tr>
+                                                            <td width="216" align="center"  class="nomelutador">
+                                                            <img width="216" src="@luta.LUTADOR.CAMINHOFOTO" />
+                                                            </td>
+                                                            <td width="75"></td>
+                                                            <td width="216" align="center"  class="nomelutador">
+                                                            <img width="216" src="@luta.LUTADOR1.CAMINHOFOTO" />
+                                                            </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="center"">
+                                                            <table border="0" cellpadding="0" cellspacing="0" style="width:179px;">
+                                                                <tr>
+                                                                    <td align="center" class="fonte30" style="background-image:url(/imgs/bg_nomes_lutadores.gif);height:32px;background-repeat:no-repeat;">@luta.LUTADOR.NOME</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="center">@Html.RadioButton(luta.ID.ToString(), luta.IDLUTADOR1)</td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                        <td valign="top" align="center" style="padding-top:5px;">
+                                                            <table cellpadding="0" cellspacing="0">
+                                                                <tr valign="top" style="height:25px;">
+                                                                    <td>@Html.DropDownList("MODO" + luta.ID.ToString(), listamodos, new { @style = "width:100px;" })</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>@Html.DropDownList("ROUND" + luta.ID.ToString(), items, new { @style = "width:100px;" })</td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                        <td align="center"">
+                                                            <table border="0" cellpadding="0" cellspacing="0" style="width:179px;">
+                                                                <tr>
+                                                                    <td align="center" class="fonte30" style="background-image:url(/imgs/bg_nomes_lutadores.gif);height:32px;background-repeat:no-repeat;">@luta.LUTADOR1.NOME</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="center">@Html.RadioButton(luta.ID.ToString(), luta.IDLUTADOR2)</td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-image:url('/imgs/bg_rodape_aposta_interna.gif');"><img alt="" src="/imgs/sp.gif" height="18" /></td>
+                                        </tr>
+                                    </table>
+                                </td>                                                                                                                                                    
+                                <td><img src="/imgs/lateral_dir_aposta_interna.gif" /></td>
+                            </tr>
+                        </table>
+                        </td>
+                    </tr>
+                </table>                      
+                      
+    }  
+ }
+ <br />
+ <br />
+     <div align="center">
+    @{
+        if (oUsuario != null)
+        {
+@*            if (oUsuario.SALDO < oEvento.VALOR)
+            {
+            <p>Seu saldo não é suficiente para realizar palpites nesse evento, adicione créditos e tente novamente.</p>
+            }
+            else
+            {*@
+                if (apostaRepository.All.Where(x => x.LUTA.EVENTO.ID == oEvento.ID && x.IDUSUARIO == oUsuario.Id).Count() > 0 && oEvento.MULTIPLASAPOSTAS == false)
+                {
+                <p>Você já realizou seus palpites para esse evento. Acesse a aba Meus Palpites para vê-los.</p>
+                }
+                else
+                {
+                    if (oEvento.DATA <= DateTime.Now || oEvento.RESULTADODISPONIVEL)
+                    {
+                    <p>Os palpites para esse evento estão encerrados, acesse a aba de resultados para ver o(s) ganhador(es).</p>
+                    }
+                    else
+                    {
+                    <input type="submit" value="Enviar palpites" onclick="return ValidarApostas()"/>
+                    }
+                }
+            //}
+            if (User.IsInRole("admin"))
+            {
+                <br /><input type="submit" value="Enviar resultado" onclick="return ValidarApostasResult()"/>
+            }
+        } 
+    }
+    </div>
+    <br /><br />
+    </form>
+ </div>
+                 <div id="detalhes" style="display:none;">
+                      <table border="0" align="center" cellpadding="0" cellspacing="10" width="100%" style="background-color:#282828;">
+                        <tr>                                                                
+                            <td align="center" valign="top">
+                            Detalhes
+                            </td>
+                        </tr>
+                       </table>
+                </div>
+                 <div id="resultados" style="display:none;">
+                      <table border="0" align="center" cellpadding="0" cellspacing="10" width="100%" style="background-color:#282828;">
+                        <tr>                                                                
+                            <td align="center" valign="top">
+                            @{
+                                UFC.Models.IRESULTADORepository resultadoRepository = new UFC.Models.RESULTADORepository();
+                                IEnumerable<UFC.RESULTADO> oResultados = (from r in resultadoRepository.All.Where(x => x.IDEVENTO == oEvento.ID) orderby r.PONTUACAO descending, r.DATAAPOSTA ascending select r);
+                                <table width="570" Style="border:1pt solid #282828">
+                                    <tr>
+                                        <td colspan="6" style="background-color:#fff;color:#000;font-size:18pt;" align="center">Resultado das lutas</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="background-color:#fff;color:#000;width:270px;" align="center">Luta</td>
+                                        <td style="background-color:#fff;color:#000;padding-left:3px;" align="left">Vencedor</td>
+                                        <td style="background-color:#fff;color:#000;width:70px;" align="center">Modo</td>
+                                        <td style="background-color:#fff;color:#000;width:40px;" align="center">Round</td>
+                                    </tr>
+                                    @{
+                                        IEnumerable<UFC.APOSTA> oApostas = apostaRepository.All.Where(x => x.LUTA.IDEVENTO == oEvento.ID && x.RESULTADO == true);
+                                        if (oApostas.Count() > 0)
+                                        {
+                                            foreach (UFC.APOSTA aposta in oApostas)
+                                            {
+                                                string lutadorvencedor = aposta.LUTA.LUTADOR.ID == aposta.LUTADORVENCEDOR ? aposta.LUTA.LUTADOR.NOME : aposta.LUTA.LUTADOR1.NOME;
+                                                
+                                                    <tr>
+                                                        <td style="width:170;" align="center">@aposta.LUTA.LUTADOR.NOME</td>
+                                                        <td align="center">vs</td>
+                                                        <td style="width:170;" align="center">@aposta.LUTA.LUTADOR1.NOME</td>
+                                                        <td style="padding-left:3px;" align="left">@lutadorvencedor</td>
+                                                        <td style="padding-left:3px;" align="left">@aposta.MODO</td>
+                                                        <td align="center">@aposta.ROUND</td>
+                                                    </tr> 
+                                            }
+                                        }
+                                     }
+                                </table>
+                                if (oUsuario != null)
+                                {
+                                    if (User.IsInRole("admin"))
+                                    {
+
+                                        <fieldset>
+                                        <legend style="color:#fff">Área do administrador</legend>
+                                        @{
+                                        if (oApostas.Count() > 0)
+                                        {
+                                                <form action="GerarResultados" method="post">
+                                                    @Html.Hidden("numeroevento", oEvento.ID.ToString())  
+                                                    <input type="submit" value="Gerar resultados"/>                                          
+                                                </form>
+                                        }
+                                        else
+                                        {
+                                                <p>Não existem resultados cadastrados para esse evento.</p>
+                                        }
+                                        if (oResultados.Count() > 0)
+                                        {
+                                            if (!oEvento.RESULTADODISPONIVEL)
+                                            {
+                                                <p>Os resultados desse evento não estão disponíveis para usuários que não são administradores.</p>
+                                                <form action="LiberarResultados" method="post">
+                                                    @Html.Hidden("numeroevento", oEvento.ID.ToString())  
+                                                    <input type="submit" value="Liberar resultados"/>                                          
+                                                </form>                                        
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <p>Não foram gerados os resultados para esse evento.</p>
+                                        }
+                                        }
+                                        </fieldset>
+                                    }
+                                }
+                                <br />
+                                if (oResultados.Count() > 0)
+                                {
+                                    if (User.Identity.IsAuthenticated)
+                                    {
+                                        if (User.IsInRole("admin") || oEvento.RESULTADODISPONIVEL)
+                                        {
+                                        <table width="570" Style="border:1pt solid #282828">
+                                            <tr>
+                                                <td colspan="5" style="background-color:#fff;color:#000;font-size:18pt;" align="center">Resultado do bolão</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="background-color:#fff;color:#000;width:80px;" align="center">Comprovante</td>
+                                                <td style="background-color:#fff;color:#000;width:100px;padding-left:3px;" align="left">Data</td>
+                                                <td style="background-color:#fff;color:#000;padding-left:3px;" align="left">Nome</td>
+                                                <td style="background-color:#fff;color:#000;width:65px;" align="center">Pontuação</td>
+                                                <td style="background-color:#fff;color:#000;width:150px;padding-left:3px;" align="left">Observações</td>
+                                            </tr>
+                                            @{
+                                            foreach (UFC.RESULTADO resultado in oResultados)
+                                            {
+                                                    <tr>
+                                                        <td align="center">@resultado.IDCOMPROVANTE.ToString().PadLeft(8, '0')</td>
+                                                        <td style="padding-left:3px;" align="left">@resultado.DATAAPOSTA.ToString("dd/MM/yyyy hh:mm")</td>
+                                                        <td style="padding-left:3px;" align="left">@resultado.NOME</td>
+                                                        <td align="center">@resultado.PONTUACAO.ToString()</td>
+                                                        <td style="padding-left:3px;" align="left">@resultado.OBSERVACAO</td>
+                                                    </tr>                                        
+                                            }
+                                            }
+                                        </table>
+                                        }
+                                        else
+                                        {
+                                            <p>Os resultados desse evento ainda não estão disponíveis.</p>
+                                        }
+                                    }
+                                }
+        }
+                            </td>
+                        </tr>
+                       </table>
+                </div>
+                 <div id="meuspalpites" style="display:none;">
+                      <table border="0" align="center" cellpadding="0" cellspacing="10" width="100%" style="background-color:#282828;">
+                        <tr>                                                                
+                            <td align="center" valign="top">
+                            @{
+                                if (User.Identity.IsAuthenticated)
+                                {
+                                    IEnumerable<UFC.COMPROVANTE> oComprovantes = (from a in apostaRepository.All.Where(x => x.LUTA.IDEVENTO == oEvento.ID && x.IDUSUARIO == oUsuario.Id && x.RESULTADO == false) select a.COMPROVANTE).Distinct();
+                                    foreach (UFC.COMPROVANTE comprovante in oComprovantes)
+                                    {
+                                    <table width="570" Style="border:1pt solid #282828">
+                                        <tr>
+                                            <td colspan="3" style="background-color:#fff;color:#000;font-size:18pt;" align="center">COMPROVANTE @comprovante.ID.ToString().PadLeft(8, '0')</td>
+                                            <td colspan="4" style="background-color:#fff;color:#000;font-size:12pt;" align="center">@comprovante.DATA.ToString("dd/MM/yyyy hh:mm")</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" style="background-color:#fff;color:#000;width:230px;" align="center">Luta</td>
+                                            <td style="background-color:#fff;color:#000;padding-left:3px;" align="left">Vencedor</td>
+                                            <td style="background-color:#fff;color:#000;width:70px;" align="center">Modo</td>
+                                            <td style="background-color:#fff;color:#000;width:40px;" align="center">Round</td>
+                                            <td style="background-color:#fff;color:#000;width:40px;" align="center">Pontos</td>
+                                        </tr>
+                                        @{
+                                                                                                                               int totalpontos = 0;
+                                                                                                                               foreach (UFC.APOSTA aposta in comprovante.APOSTA)
+                                                                                                                               {
+
+                                                                                                                                   string lutadorvencedor = aposta.LUTA.LUTADOR.ID == aposta.LUTADORVENCEDOR ? aposta.LUTA.LUTADOR.NOME : aposta.LUTA.LUTADOR1.NOME;                                                
+                                                    <tr>
+                                                        <td style="width:150;" align="center">@aposta.LUTA.LUTADOR.NOME</td>
+                                                        <td align="center">vs</td>
+                                                        <td style="width:150;" align="center">@aposta.LUTA.LUTADOR1.NOME</td>
+                                                        <td style="padding-left:3px;" align="left">@lutadorvencedor</td>
+                                                        <td style="padding-left:3px;" align="left">@aposta.MODO</td>
+                                                        <td align="center">@aposta.ROUND</td>
+                                                        <td align="center">
+                                                        @{
+                                                                      if (oEvento.RESULTADODISPONIVEL)
+                                                                      {
+                                                                          totalpontos += aposta.PONTOS;
+                                                                @aposta.PONTOS 
+                                                                      }
+                                                                      else
+                                                                      {
+                                                                <span>-</span>
+                                                                      }
+                                                        }
+                                                        </td>
+                                                    </tr>                                                                                                        
+                                                                                                                               }
+                                                                                                                               if (oEvento.RESULTADODISPONIVEL)
+                                                                                                                               {
+                                            <tr>
+                                                <td colspan="6" style="font-size:18pt;padding-right:5px;" align="right">TOTAL</td>
+                                                <td style="font-size:18pt;" align="center">@totalpontos</td>
+                                            </tr>
+                                                                                                                               }  
+                                        } 
+                                        </table>                          
+                                    }
+                                }
+                                else
+                                {
+                                    <p>É preciso estar logado para acessar este menu.</p>
+                                }
+                            }
+                            </td>
+                        </tr>
+                       </table>
+                </div>
+            </td>
+        </tr>
+    </table>    
+
+<script type="text/javascript">
+
+    var mensagem = '@TempData["message"]';
+    if(mensagem.length>0)
+    {
+        jAlert(mensagem,"Central de apostas");
+    }
+    function ValidarApostas() {        
+        var mySplitResult = botoes.split(",");
+
+        for (i = 0; i < mySplitResult.length - 1; i++) {
+            if (valButton(document.getElementsByName(mySplitResult[i])) == null) {
+                jAlert('Faça todas os palpites!', "Central de apostas");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function ValidarApostasResult() {
+        var mySplitResult = botoes.split(",");
+
+        for (i = 0; i < mySplitResult.length - 1; i++) {
+            if (valButton(document.getElementsByName(mySplitResult[i])) == null) {
+                jAlert('Faça todas os palpites!', "Central de apostas");
+                return false;
+            }
+        }
+        $("#resultado").val("1");
+        return true;
+    }
+
+    function valButton(btn) {
+        var cnt = -1;
+        for (var i = btn.length - 1; i > -1; i--) {
+            if (btn[i].checked) { cnt = i; i = -1; }
+        }
+        if (cnt > -1) return btn[cnt].value;
+        else return null;
+    }
+
+    function ativadiv(div) {
+        newImage = "url(/imgs/bg_menu_baixo_cinza.gif)";
+        document.getElementById('menupalpites').style.backgroundImage = newImage;
+        document.getElementById('menudetalhes').style.backgroundImage = newImage;
+        document.getElementById('menuresultados').style.backgroundImage = newImage;
+        document.getElementById('menumeuspalpites').style.backgroundImage = newImage;
+        newImage = "url(/imgs/bg_menu_dir_vermelho.gif)";
+        document.getElementById('menu' + div).style.backgroundImage = newImage;
+
+        document.getElementById('palpites').style.display = 'none';
+        document.getElementById('detalhes').style.display = 'none';
+        document.getElementById('resultados').style.display = 'none';
+        document.getElementById('meuspalpites').style.display = 'none';
+        document.getElementById(div).style.display = 'block';
+
+        document.getElementById('menupalpites').setAttribute("class", "fonte5a");
+        document.getElementById('menudetalhes').setAttribute("class", "fonte5a");
+        document.getElementById('menuresultados').setAttribute("class", "fonte5a");
+        document.getElementById('menumeuspalpites').setAttribute("class", "fonte5a");
+        document.getElementById('menu' + div).setAttribute("class", "fonte5");
+
+    }
+</script>
+
+

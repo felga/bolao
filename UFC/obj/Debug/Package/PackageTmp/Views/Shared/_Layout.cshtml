@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Layout.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.4.4.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.alerts.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.7.1.custom.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/ui.core.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/ui.dialog.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/ui.draggable.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/ui.resizable.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Scripts/jquery.alerts.css")" rel="stylesheet" type="text/css" />  
+</head>
+<body style="margin-left:80px;margin-right:80px;margin-top:80px; margin-bottom:80px; background-color:#000000;background-position:center top;background-image:url('/imgs/bg.gif');background-repeat:no-repeat;">
+    <table border="0" align="center" cellpadding="0" cellspacing="0" style="background-color:#212121;width:880px;">
+        <tr>
+            <td valign="top">
+                <table border="0" align="center" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <td valign="top"  width="100%" style="height:90px;padding-left:27px;padding-top:15px;background-image:url(/imgs/bg_topo.jpg);" class="fonte">
+                        <table border="0" width="100%">
+                            <tr>
+                            <td>Central de apostas</td>
+                            <td><img src="/banners/principal.gif" width="468" height="60" alt="" /></td>
+                            </tr>
+                        </table>
+                        
+                        </td>
+                    </tr>
+                    <tr align="center" style="background-color:#2a2a2a;">
+                        <td valign="top" style="height:10px;">
+                            <table border="0" align="center" cellpadding="0" cellspacing="0" width="100%"  id="menusuperior">
+                                <tr style="height:35px;" class="fonte2">
+                                 @{                                    
+                                    if (User.Identity.IsAuthenticated)
+                                    {
+                                        UFC.Models.IUsuarioRepository usuarioRepository = new UFC.Models.UsuarioRepository();
+                                        UFC.Usuario oUsuario = usuarioRepository.All.Where(x => x.Login == User.Identity.Name).First();
+                                        if (User.IsInRole("admin"))
+                                        {   
+                                            <td valign="middle" width="139">@Html.ActionLink("Usuário", "Index", "Usuario")</td><td style="width:1px;background-color:#000000;"></td>
+                                            <td valign="middle" width="139">@Html.ActionLink("Lutador", "Index", "LUTADOR")</td><td style="width:1px;background-color:#000000;"></td>                   
+                                            <td valign="middle" width="139">@Html.ActionLink("Evento", "Index", "EVENTO")</td><td style="width:1px;background-color:#000000;"></td>
+                                            <td valign="middle" width="139">@Html.ActionLink("Luta", "Index", "LUTA")</td><td style="width:1px;background-color:#000000;"></td>
+                                            <td valign="middle" width="139">@Html.ActionLink("Patrocínio", "Index", "PATROCINIO")</td><td style="width:1px;background-color:#000000;"></td>
+                                        }                                    
+                                        else
+                                        {
+                                            <td valign="middle">&nbsp</td><td style="width:1px;background-color:#000000;"></td>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <td valign="middle">&nbsp</td><td style="width:1px;background-color:#000000;"></td>
+                                    }
+                                }
+                                @Html.Partial("_LogOnPartial")
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr style="background-color:#000000;">
+                        <td valign="top">
+                            <table border="0" align="center" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td style="height:5px;"></td>
+                                </tr>
+                                <tr style="padding-left:5px;">
+                                    <td valign="top">
+                                        <table border="0" align="center" cellpadding="0" cellspacing="0" width="100%">
+                                            <tr>
+                                                <td style="width:615px;padding-top:20px;" class="fonte7" valign="top">@RenderBody()</td>
+                                                <td valign="top" class="fonte4">
+                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" width="250" id="menulateral">
+                                                        <tr>
+                                                            <td colspan="2" valign="middle" align="center" style="background-image:url(/imgs/bg_menu_dir_vermelho.gif);height:43px;" class="fonte5">Menu</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="height:1px;background-color:#000000;"></td>
+                                                        </tr>
+                                                        <tr style="background-image:url(/imgs/bg_menu_dir_cinza.gif);">
+                                                            <td align="left" style="height:40px;"><img src="/imgs/seta_menu_dir.gif" /></td>
+                                                            <td align="left">@Html.ActionLink("Bolões abertos", "SelecionaEvento", "APOSTA")</td>
+                                                        </tr>
+                                                        <tr style="background-image:url(/imgs/bg_menu_dir_cinza.gif);">
+                                                            <td align="left" style="height:40px;"><img src="/imgs/seta_menu_dir.gif" /></td>
+                                                            <td align="left">@Html.ActionLink("Como Funciona", "ComoFunciona", "Home")</td>
+                                                        </tr>
+                                                        <tr style="background-image:url(/imgs/bg_menu_dir_cinza.gif);">
+                                                            <td align="left" style="height:40px;"><img src="/imgs/seta_menu_dir.gif" /></td>
+                                                            <td align="left">@Html.ActionLink("Regras", "Regras", "Home")</td>
+                                                        </tr>
+                                                        <tr style="background-image:url(/imgs/bg_menu_dir_cinza.gif);">
+                                                            <td align="left" style="height:40px;"><img src="/imgs/seta_menu_dir.gif" /></td>
+                                                            <td align="left">@Html.ActionLink("Contato", "Contato", "Home")</td>
+                                                        </tr>
+                                                    </table>
+                                                    <br /><br /><br />
+                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" width="250">
+                                                        <tr>
+                                                            <td valign="middle" align="center"><img src="/banners/lateral.gif" width="250" height="250" alt="" /></td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="height:5px;"></td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr> 
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

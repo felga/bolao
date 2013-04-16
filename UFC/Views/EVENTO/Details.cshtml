@@ -1,0 +1,35 @@
+@model UFC.EVENTO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>EVENTO</legend>
+
+    <div class="display-label">NOME</div>
+    <div class="display-field">@Model.NOME</div>
+
+    <div class="display-label">TITULO</div>
+    <div class="display-field">@Model.TITULO</div>
+
+    <div class="display-label">DATA</div>
+    <div class="display-field">@String.Format("{0:g}", Model.DATA)</div>
+
+    <div class="display-label">LIBERADO</div>
+    <div class="display-field">@Model.LIBERADO</div>
+
+    <div class="display-label">LUTA</div>
+    <div class="display-field">@(Model.LUTA == null ? "None" : Model.LUTA.Count.ToString())</div>
+
+    <div class="display-label">Usuario_EVENTO</div>
+    <div class="display-field">@(Model.Usuario_EVENTO == null ? "None" : Model.Usuario_EVENTO.Count.ToString())</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

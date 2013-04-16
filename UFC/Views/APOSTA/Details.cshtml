@@ -1,0 +1,32 @@
+@model UFC.APOSTA
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>APOSTA</legend>
+
+    <div class="display-label">IDLUTA</div>
+    <div class="display-field">@Model.IDLUTA</div>
+
+    <div class="display-label">LUTADORVENCEDOR</div>
+    <div class="display-field">@Model.LUTADORVENCEDOR</div>
+
+    <div class="display-label">IDUSUARIO</div>
+    <div class="display-field">@Model.IDUSUARIO</div>
+
+    <div class="display-label">LUTA</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.LUTA).ToString()</div>
+
+    <div class="display-label">Usuario</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.Usuario).ToString()</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

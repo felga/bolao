@@ -1,0 +1,48 @@
+@model UFC.LUTA
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.IDLUTADOR1)
+</div>
+<div class="editor-field">            
+    @Html.DropDownListFor(model => model.IDLUTADOR1, ((IEnumerable<UFC.LUTADOR>)ViewBag.PossibleLutador).Select(option => new SelectListItem
+    {
+        Text = option.NOME,
+        Value = option.ID.ToString(),
+        Selected = (Model != null) && (option.ID == Model.IDLUTADOR1)
+    }), "Escolha...", new { @class = "inputlogininterno", @style = "width:250px" })
+    @Html.ValidationMessageFor(model => model.IDLUTADOR1)
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.IDLUTADOR2)
+</div>
+<div class="editor-field">            
+    @Html.DropDownListFor(model => model.IDLUTADOR2, ((IEnumerable<UFC.LUTADOR>)ViewBag.PossibleLutador).Select(option => new SelectListItem
+    {
+        Text = option.NOME,
+        Value = option.ID.ToString(),
+        Selected = (Model != null) && (option.ID == Model.IDLUTADOR2)
+    }), "Escolha...", new { @class = "inputlogininterno", @style = "width:250px" })
+    @Html.ValidationMessageFor(model => model.IDLUTADOR2)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.IDEVENTO)
+</div>
+<div class="editor-field">            
+    @Html.DropDownListFor(model => model.IDEVENTO, ((IEnumerable<UFC.EVENTO>)ViewBag.PossibleEvento).Select(option => new SelectListItem
+    {
+        Text = option.NOME,
+        Value = option.ID.ToString(),
+        Selected = (Model != null) && (option.ID == Model.IDEVENTO)
+    }), "Escolha...", new { @class = "inputlogininterno", @style = "width:250px" })
+    @Html.ValidationMessageFor(model => model.IDEVENTO)
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.ROUNDS)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.ROUNDS)
+    @Html.ValidationMessageFor(model => model.ROUNDS)
+</div>

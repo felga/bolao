@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <style type="text/css">
+.fonte {font-family: calibri, helvetica, serif; font-size: 12px; font-weight: bold;font-style: normal;color:#363636;}
+.fonte2 {font-family: calibri, helvetica, serif; font-size: 14px; font-weight: bold;font-style: normal;color:#848e8d;}
+.fonte3 {font-family: calibri, helvetica, serif; font-size: 13px; font-weight: bold;font-style: italic;color:#666666;}
+.fonte4 {font-family: calibri, helvetica, serif; font-size: 12px; font-weight: bold;font-style: normal;color:#848e8d;}
+.fonte5 {font-family: calibri, helvetica, serif; font-size: 12px; font-weight: bold;font-style: normal;color:#007e7a;}
+.fonte6 {font-family: calibri, helvetica, serif; font-size: 12px; font-weight: bold;font-style: normal;color:#464646;}
+.fonte7 {font-family: calibri, helvetica, serif; font-size: 14px; font-weight: bold;font-style: normal;color:#8f8f8f;}
+.fonte8 {font-family: calibri, helvetica, serif; font-size: 12px; font-weight: bold;font-style: normal;color:#666666;}
+.fonte9 {font-family: calibri, helvetica, serif; font-size: 14px; font-weight: bold;font-style: italic;color:#363636;}
+.fonte10 {font-family: calibri, helvetica, serif; font-size: 12px; font-weight: bold;font-style: italic;color:#007e7a;}
+.fonte11 {font-family: calibri, helvetica, serif; font-size: 12px; font-weight: bold;font-style: normal;color:#5e5e5e;}
+.fonte12 {font-family: calibri, helvetica, serif; font-size: 12px; font-weight: bold;font-style: normal;color:#ffffff;}
+.fonte13 {font-family: calibri, helvetica, serif; font-size: 14px; font-weight: bold;font-style: normal;color:#1f1f1f;}
+.fonte14 {font-family: calibri, helvetica, serif; font-size: 10px; font-weight: bold;font-style: normal;color:#6c6c6c;}
+.fonteAssunto {font-family: calibri, helvetica, serif; font-size: 14px; font-weight: bold;font-style: normal;color:#1f1f1f;}
+.fonteTitulo {font-family: calibri, helvetica, serif; font-size: 12px; font-weight: bold;font-style: normal;color:#1f1f1f;}
+.fonteItem {font-family: calibri, helvetica, serif; font-size: 12px; font-style: normal;color:#1f1f1f;}
+
+.gridbutton {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 12px;
+color: #FFFFFF;
+text-decoration: none;
+background-color: #FFFFFF;
+text-align: center;
+height: 16px;
+width: 16px;
+cursor: pointer;
+border: 0;
+}
+
+.inputloginbg {background-image:url(imgs/bginput.gif);background-repeat:no-repeat;width:204px;}
+.inputlogin {border-bottom-style:none;border-width:0px;border-color:#ececec;width:190px;background-color:#ececec;}
+.inputlogininterno {border-width:1px;border-color:#d8d8d8;border-style:solid;background-image:url(imgs/bginputinterno.gif)}
+.textareainterno {width: 400px;height:120px;border: 1px solid #cccccc;padding: 5px;font-family: Tahoma, sans-serif;background-image: url(imgs/bginputinterno.gif);background-repeat: no-repeat; }
+.dropdown {width:200px;}
+
+
+.bodylogin {background-image:url('imgs/bgfull.jpg');background-repeat:no-repeat;}
+
+a:link {text-decoration: none ;color:#969696;}
+a:visited {text-decoration: none;color:#969696; }
+a:hover { text-decoration: none;color:#969696; }
+a:active { text-decoration: none;color:#969696; }
+
+.aesq:link {text-decoration:underline; color:#363636; font-family:Arial;font-size:11px;}
+.aesq:visited {text-decoration: underline; color:#363636; font-family:Arial;font-size:11px;}
+.aesq:hover { text-decoration: underline; color:#363636; font-family:Arial;font-size:11px;}
+.aesq:active { text-decoration: underline; color:#363636; font-family:Arial;font-size:11px;}
+
+.amenuesq:link {text-decoration: none ;color:#666666;outline: 0}
+.amenuesq:visited {text-decoration: none;color:#666666;outline: 0}
+.amenuesq:hover { text-decoration: none;color:#007e7a;outline: 0}
+.amenuesq:active { text-decoration: none;color:#666666;outline: 0}
+
+.aaba:link {text-decoration: none ;color:#ffffff;}
+.aaba:visited {text-decoration: none;color:#ffffff; }
+.aaba:hover { text-decoration: none;color:#ffffff; }
+.aaba:active { text-decoration: none;color:#ffffff; }
+
+img { border: none; }
+
+
+.clear
+{
+	font-family:Arial;font-size:11px;
+    clear: both;
+}
+
+.error
+{
+	font-family:Arial;font-size:11px;
+    color:Red;
+}
+
+.field-validation-error
+{
+	font-family:Arial;font-size:11px;
+    color: #ff0000;
+}
+
+.input-validation-error
+{
+	font-family:Arial;font-size:11px;
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors
+{
+	font-family:Arial;font-size:11px;
+    font-weight: bold;
+    color: #ff0000;
+}    
+    </style>
+    <script src="@Url.Content("~/Scripts/jquery-1.4.4.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.alerts.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.7.1.custom.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/ui.core.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/ui.dialog.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/ui.draggable.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/ui.resizable.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Scripts/jquery.alerts.css")" rel="stylesheet" type="text/css" />
+</head>
+
+<body style="background-color: #fff;">
+<div>
+            @RenderBody()
+            </div>
+</body>
+</html>

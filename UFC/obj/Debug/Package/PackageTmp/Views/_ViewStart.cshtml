@@ -1,0 +1,63 @@
+﻿@{
+    string layoutselecionado = Request.Params["LayoutAtivo"];
+    if (layoutselecionado != null)
+    {
+        //Grab the cookie
+        HttpCookie cookie1 = Request.Cookies["Layout"];
+
+        //Check to make sure the cookie exists
+        if (cookie1 != null)
+        {
+            Response.Cookies.Remove("Layout");
+        } 
+        //Create a new cookie, passing the name into the constructor
+        HttpCookie cookie = new HttpCookie("Layout");
+
+        //Set the cookies value
+        cookie.Value = layoutselecionado;
+
+        //Add the cookie
+        Response.Cookies.Add(cookie);
+    }
+    else
+    {
+        //Grab the cookie
+        HttpCookie cookie1 = Request.Cookies["Layout"];
+
+        //Check to make sure the cookie exists
+        if (cookie1 == null)
+        {
+            //Create a new cookie, passing the name into the constructor
+            HttpCookie cookie = new HttpCookie("Layout");
+
+            //Set the cookies value
+            cookie.Value = "1";
+
+            //Add the cookie
+            Response.Cookies.Add(cookie);
+            layoutselecionado = "1";                        
+        }
+        else{
+            layoutselecionado = cookie1.Value.ToString();
+        }
+    }
+    
+        
+    if(layoutselecionado==null){
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else{
+        switch (layoutselecionado)
+        {
+            case "1":
+                Layout = "~/Views/Shared/_Layout.cshtml";
+                break;
+            case "2":
+                Layout = "~/Views/Shared/_Layout2.cshtml";
+                break;                
+            default:
+                Layout = "~/Views/Shared/_Layout.cshtml";
+                break;
+        }
+    }
+}
