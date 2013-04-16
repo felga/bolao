@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <publishData>
-  <publishProfile publishUrl="ftp://ftp.celtica.com.br/bolao.celtica.com.br/wwwroot/" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FTP" replaceMatchingFiles="False" userName="anunciocar" savePWD="True" userPWD="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAzsSRCa4rtUqeQgEOQ5dzRgAAAAACAAAAAAAQZgAAAAEAACAAAACpYTHNMUPleqyh4/JM5o32qN6BCqGsV0mOS7LmP67xYgAAAAAOgAAAAAIAACAAAABXZPyf/Wl4oIbIQaoSidetgrI0hMhdGqznXT4mT2fT+zAAAABqkl4UYZzKYfRSrG3gfpouoPgHR/8FH8DY4bN1UXOhbW+Mmy5Lq2TxveqBaAlzfLlAAAAAtaa4GWP1DNkwf9rwTW4f5VxO7HhZ68LSbQPs12bpOaU0t2Da59JKiK239O1j1caZUnQYSTYadhhuKrZFZUUxXg==" SelectedForPublish="True">
+  <publishProfile publishUrl="ftp://ftp.celtica.com.br/bolao.celtica.com.br/wwwroot/" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FTP" replaceMatchingFiles="True" userName="anunciocar" savePWD="True" userPWD="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAzsSRCa4rtUqeQgEOQ5dzRgAAAAACAAAAAAAQZgAAAAEAACAAAACpYTHNMUPleqyh4/JM5o32qN6BCqGsV0mOS7LmP67xYgAAAAAOgAAAAAIAACAAAABXZPyf/Wl4oIbIQaoSidetgrI0hMhdGqznXT4mT2fT+zAAAABqkl4UYZzKYfRSrG3gfpouoPgHR/8FH8DY4bN1UXOhbW+Mmy5Lq2TxveqBaAlzfLlAAAAAtaa4GWP1DNkwf9rwTW4f5VxO7HhZ68LSbQPs12bpOaU0t2Da59JKiK239O1j1caZUnQYSTYadhhuKrZFZUUxXg==" SelectedForPublish="True">
     <file relUrl="images/leftmenu_top.png" publishTime="04/15/2013 13:56:28" />
     <file relUrl="Scripts/MicrosoftAjax.js" publishTime="04/15/2013 13:56:28" />
+    <file relUrl="Scripts/images/important.gif" publishTime="04/15/2013 13:56:28" />
     <file relUrl="Views/APOSTA/Details.cshtml" publishTime="04/16/2013 09:44:58" />
-    <file relUrl="Views/USUARIO/_CreateOrEdit.cshtml" publishTime="04/16/2013 09:10:00" />
     <file relUrl="Views/LUTA/Index.cshtml" publishTime="04/15/2013 13:56:29" />
     <file relUrl="Views/LUTA/Delete.cshtml" publishTime="04/15/2013 13:56:29" />
     <file relUrl="Views/Account/ChangePasswordSuccess.cshtml" publishTime="04/15/2013 13:56:29" />
@@ -13,27 +13,23 @@
     <file relUrl="Views/Web.config" publishTime="04/15/2013 13:56:29" />
     <file relUrl="Views/EVENTO/Details.cshtml" publishTime="04/16/2013 09:10:00" />
     <file relUrl="Views/APOSTA/SelecionaEvento.cshtml" publishTime="04/15/2013 13:56:29" />
-    <file relUrl="imgs/sp.gif" publishTime="04/15/2013 13:56:30" />
     <file relUrl="Scripts/jquery.validate.js" publishTime="04/15/2013 13:56:28" />
-    <file relUrl="Views/USUARIO/Edit.cshtml" publishTime="04/16/2013 09:40:30" />
     <file relUrl="Views/EVENTO/Index.cshtml" publishTime="04/15/2013 13:56:29" />
     <file relUrl="bin/EntityFramework.xml" publishTime="04/15/2013 13:56:30" />
     <file relUrl="Views/RESULTADO/Index.cshtml" publishTime="04/15/2013 13:56:29" />
-    <file relUrl="Views/USUARIO/Delete.cshtml" publishTime="04/16/2013 09:40:30" />
     <file relUrl="Views/Home/Index.cshtml" publishTime="04/15/2013 13:56:30" />
     <file relUrl="Scripts/jquery-ui.min.js" publishTime="04/15/2013 13:56:28" />
-    <file relUrl="bin/UFC.pdb" publishTime="04/16/2013 09:36:17" />
+    <file relUrl="bin/UFC.pdb" publishTime="04/16/2013 13:00:18" />
     <file relUrl="imgs/bg_topo_aposta_interna.gif" publishTime="04/15/2013 13:56:30" />
     <file relUrl="Views/LUTADOR/Create.cshtml" publishTime="04/15/2013 13:56:29" />
     <file relUrl="imgs/lateral_esq_aposta_interna.gif" publishTime="04/15/2013 13:56:30" />
     <file relUrl="Views/Shared/Error.cshtml" publishTime="04/15/2013 13:56:29" />
     <file relUrl="Views/EVENTO/_CreateOrEdit.cshtml" publishTime="04/15/2013 13:56:29" />
-    <file relUrl="imgs/bg_rodape_aposta_interna.gif" publishTime="04/15/2013 13:56:30" />
-    <file relUrl="Scripts/MicrosoftAjax.debug.js" publishTime="04/15/2013 13:56:28" />
+    <file relUrl="Views/COMPROVANTE/Create.cshtml" publishTime="04/15/2013 13:56:29" />
     <file relUrl="Views/EVENTO/Create.cshtml" publishTime="04/15/2013 13:56:29" />
     <file relUrl="Views/Shared/_LogOnPartial.cshtml" publishTime="04/16/2013 09:14:57" />
     <file relUrl="Views/RESULTADO/_CreateOrEdit.cshtml" publishTime="04/15/2013 13:56:29" />
-    <file relUrl="Views/USUARIO/Index.cshtml" publishTime="04/16/2013 09:40:30" />
+    <file relUrl="Views/RESULTADO/Details.cshtml" publishTime="04/15/2013 13:56:29" />
     <file relUrl="Content/themes/base/images/ui-bg_glass_55_fbf9ee_1x400.png" publishTime="04/15/2013 13:56:29" />
     <file relUrl="Views/APOSTA/Edit.cshtml" publishTime="04/15/2013 13:56:29" />
     <file relUrl="Content/themes/base/jquery-ui.css" publishTime="04/15/2013 13:56:29" />
@@ -56,12 +52,11 @@
     <file relUrl="Views/EVENTO/Delete.cshtml" publishTime="04/16/2013 09:10:00" />
     <file relUrl="Scripts/MicrosoftMvcValidation.js" publishTime="04/15/2013 13:56:28" />
     <file relUrl="Scripts/jquery.alerts.js" publishTime="04/15/2013 13:56:28" />
-    <file relUrl="Web.config" publishTime="04/16/2013 11:30:19" />
+    <file relUrl="Web.config" publishTime="04/16/2013 13:00:36" />
     <file relUrl="Scripts/MicrosoftMvcValidation.debug.js" publishTime="04/15/2013 13:56:28" />
-    <file relUrl="Views/COMPROVANTE/Create.cshtml" publishTime="04/15/2013 13:56:29" />
+    <file relUrl="imgs/bg_rodape_aposta_interna.gif" publishTime="04/15/2013 13:56:30" />
     <file relUrl="Scripts/images/info.gif" publishTime="04/15/2013 13:56:28" />
     <file relUrl="Views/Shared/_Layout.cshtml" publishTime="04/16/2013 09:13:18" />
-    <file relUrl="Views/USUARIO/Create.cshtml" publishTime="04/16/2013 09:40:30" />
     <file relUrl="InstallationDummyFile.txt" publishTime="04/15/2013 13:56:29" />
     <file relUrl="Scripts/images/title.gif" publishTime="04/15/2013 13:56:28" />
     <file relUrl="Views/Shared/_Layout2.cshtml" publishTime="04/16/2013 09:43:59" />
@@ -97,7 +92,7 @@
     <file relUrl="Content/Layout.css" publishTime="04/15/2013 13:56:29" />
     <file relUrl="Content/themes/base/images/ui-bg_glass_75_dadada_1x400.png" publishTime="04/15/2013 13:56:29" />
     <file relUrl="imgs/bg_topo.jpg" publishTime="04/15/2013 13:56:30" />
-    <file relUrl="bin/UFC.dll" publishTime="04/16/2013 09:36:17" />
+    <file relUrl="bin/UFC.dll" publishTime="04/16/2013 13:00:18" />
     <file relUrl="Content/Layout2.css" publishTime="04/15/2013 13:56:29" />
     <file relUrl="Views/LUTA/Edit.cshtml" publishTime="04/15/2013 13:56:29" />
     <file relUrl="Content/themes/base/images/ui-bg_glass_65_ffffff_1x400.png" publishTime="04/15/2013 13:56:29" />
@@ -117,13 +112,12 @@
     <file relUrl="imgs/principal.jpg" publishTime="04/15/2013 13:56:30" />
     <file relUrl="Content/themes/base/images/ui-icons_454545_256x240.png" publishTime="04/15/2013 13:56:29" />
     <file relUrl="Scripts/jquery-ui-1.7.1.custom.min.js" publishTime="04/15/2013 13:56:28" />
-    <file relUrl="Views/USUARIO/Details.cshtml" publishTime="04/16/2013 09:40:30" />
     <file relUrl="Views/Home/Contato.cshtml" publishTime="04/15/2013 13:56:30" />
     <file relUrl="Scripts/jquery.validate.unobtrusive.js" publishTime="04/15/2013 13:56:28" />
     <file relUrl="imgs/bg_menu_baixo_cinza.gif" publishTime="04/15/2013 13:56:30" />
     <file relUrl="Views/RESULTADO/Delete.cshtml" publishTime="04/15/2013 13:56:29" />
     <file relUrl="Views/LUTADOR/Delete.cshtml" publishTime="04/15/2013 13:56:29" />
-    <file relUrl="Scripts/images/important.gif" publishTime="04/15/2013 13:56:28" />
+    <file relUrl="Scripts/MicrosoftAjax.debug.js" publishTime="04/15/2013 13:56:28" />
     <file relUrl="Views/COMPROVANTE/Edit.cshtml" publishTime="04/15/2013 13:56:29" />
     <file relUrl="banners/lateral.gif" publishTime="04/15/2013 13:56:29" />
     <file relUrl="bin/EntityFramework.dll" publishTime="04/15/2013 13:56:30" />
@@ -143,7 +137,7 @@
     <file relUrl="Views/Account/Register.cshtml" publishTime="04/16/2013 09:30:21" />
     <file relUrl="Scripts/ui.draggable.js" publishTime="04/15/2013 13:56:28" />
     <file relUrl="images/main_top.png" publishTime="04/15/2013 13:56:29" />
-    <file relUrl="Views/RESULTADO/Details.cshtml" publishTime="04/15/2013 13:56:29" />
+    <file relUrl="imgs/sp.gif" publishTime="04/15/2013 13:56:30" />
     <file relUrl="Scripts/jquery-ui.js" publishTime="04/15/2013 13:56:28" />
     <file relUrl="Scripts/jquery.unobtrusive-ajax.min.js" publishTime="04/15/2013 13:56:28" />
     <file relUrl="Views/Account/LogOn.cshtml" publishTime="04/16/2013 09:10:00" />

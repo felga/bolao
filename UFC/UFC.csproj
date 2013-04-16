@@ -51,10 +51,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.WebPages, Version=1.0.0.0,
-Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL "/>
-    <Reference Include="System.Web.Helpers, Version=1.0.0.0,
-Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0,&#xD;&#xA;Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL " />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0,&#xD;&#xA;Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -260,12 +258,6 @@ Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
       <LastGenOutput>Model1.cs</LastGenOutput>
     </None>
     <Content Include="packages.config" />
-    <Content Include="Views\USUARIO\Create.cshtml" />
-    <Content Include="Views\USUARIO\Edit.cshtml" />
-    <Content Include="Views\USUARIO\Delete.cshtml" />
-    <Content Include="Views\USUARIO\Details.cshtml" />
-    <Content Include="Views\USUARIO\Index.cshtml" />
-    <Content Include="Views\USUARIO\_CreateOrEdit.cshtml" />
     <Content Include="Views\LUTADOR\Create.cshtml" />
     <Content Include="Views\LUTADOR\Edit.cshtml" />
     <Content Include="Views\LUTADOR\Delete.cshtml" />
