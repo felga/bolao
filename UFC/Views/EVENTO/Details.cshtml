@@ -23,9 +23,6 @@
 
     <div class="display-label">LUTA</div>
     <div class="display-field">@(Model.LUTA == null ? "None" : Model.LUTA.Count.ToString())</div>
-
-    <div class="display-label">Usuario_EVENTO</div>
-    <div class="display-field">@(Model.Usuario_EVENTO == null ? "None" : Model.Usuario_EVENTO.Count.ToString())</div>
 </fieldset>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
