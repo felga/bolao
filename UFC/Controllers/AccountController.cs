@@ -8,11 +8,48 @@ using System.Web.Security;
 using UFC;
 using UFC.Models;
 using Helpers;
+using UFC.Helpers;
 
 namespace Rastreador.Controllers
 {
     public class AccountController : Controller
     {
+
+        //
+        // GET: /Account/LogOn
+
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/LogOn
+
+        [HttpPost]
+        public ActionResult ForgotPassword(ForgotPasswordModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                MembershipUserCollection Usuarios = Membership.FindUsersByEmail(model.Email);
+                if (Usuarios.Count == 0) { 
+                    ModelState["Email"].Errors.Add("* Este email não está cadastrado no sistema.");
+                    return View(model);
+                }
+                else{
+                    foreach (MembershipUser item in Usuarios)
+                    {
+                        string novasenha = item.ResetPassword();
+                        ModelosEmail.EsqueciSenha(model.Email, novasenha);
+                        return View("ForgotPasswordSuccess");
+                    }
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
 
         //
         // GET: /Account/LogOn
@@ -87,21 +124,8 @@ namespace Rastreador.Controllers
 
         public ActionResult RegisterSuccess(string email,Guid token)
         {
-            try
-            {
-                SendMail oSendMail = new SendMail();
-                oSendMail.setAssunto("Confirmação de cadastro");
-                oSendMail.setCorpo(Request.Url.ToString().Replace("email=" + email + "&", "").Replace("RegisterSuccess", "VerificaUsuario"));
-                oSendMail.setRemetente("ctracker@celtica.com.br");
-                oSendMail.setDestinatario(email);
-                oSendMail.sendEmail();
-            }
-            catch (Exception)
-            {
-                
-
-            }
-
+            string url = Request.Url.ToString().Replace("email=" + email + "&", "").Replace("RegisterSuccess", "VerificaUsuario");
+            ModelosEmail.ConfirmaCadastro(email, url);
             return View();
         }
 

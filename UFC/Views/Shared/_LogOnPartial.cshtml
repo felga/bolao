@@ -36,13 +36,24 @@ a:active { text-decoration: none;color:#363636; }
 else {
     using (Html.BeginForm("LogOn", "Account"))
     {
-        @: <td valign="middle" align="right" width="645" style="padding-bottom:2px;padding-top:2px;padding-left:10px;padding-right:10px;"><span class="fontelogin">Login:</span>&nbsp; &nbsp;<input type="text" name="UserName" id="UserName" class="inputlogin"/>&nbsp; &nbsp;<span class="fontelogin">Senha:</span>&nbsp; &nbsp;<input type="password" name="Password" id="Password" class="inputlogin"/>&nbsp; &nbsp;<input onclick="javascript:ValidaDados();" type="button" value="Entrar" />&nbsp; &nbsp;<span class="fontelogin" onmouseover="this.style.cursor='hand'" onclick="$('#dialog').dialog('open');">|Registrar-se|</span></td>
+        @: <td valign="middle" align="right" width="645" style="padding-bottom:2px;padding-top:2px;padding-left:10px;padding-right:10px;"><span class="fontelogin">Login:</span>&nbsp; &nbsp;<input type="text" name="UserName" id="UserName" class="inputlogin"/>&nbsp; &nbsp;<span class="fontelogin">Senha:</span>&nbsp; &nbsp;<input type="password" name="Password" id="Password" class="inputlogin"/>&nbsp;<span class="fontelogin" style="cursor:pointer" onclick="esqueciasenha();">?</span>&nbsp;<input onclick="javascript:ValidaDados();" type="button" value="Entrar" />&nbsp; &nbsp;<span class="fontelogin" style="cursor:pointer" onclick="cadastrarusuario();">|Registrar-se|</span></td>
     }
     @:<div class="demo">
         <div id="dialog">
-	        <iframe scrolling="auto" frameborder="0" width="550" height="270" src="../Account/Register"></iframe>
+	        <iframe id="iframe_dialog" scrolling="auto" frameborder="0" width="550" height="270"></iframe>
         </div>
         <script type="text/javascript">
+            function cadastrarusuario() {
+                document.getElementById("iframe_dialog").src = '/Account/Register';
+                $('#dialog').dialog('option', 'title', 'Cadastro de usuário');
+                $("#dialog").dialog('open');
+            }
+            function esqueciasenha() {
+                document.getElementById("iframe_dialog").src = '/Account/ForgotPassword';
+                $('#dialog').dialog('option', 'title', 'Esqueci a senha');
+                $("#dialog").dialog('open');
+            }
+            
             var box1 = document.getElementById('UserName');
             box1.focus();
             $(function () {

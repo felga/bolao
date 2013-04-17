@@ -38,7 +38,7 @@ a:active { text-decoration: none;color:#363636; }
 </tr>
 <tr height="175" valign="top">
 <td  style="padding-top:1px;padding-left:90px;">
-   <span class="fontelogin" onmouseover="this.style.cursor='pointer'" onclick="$('#dialog').dialog('open');">Registrar-se</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Entrar" />
+   <span class="fontelogin" style="cursor:pointer" onclick="cadastrarusuario();">Registrar-se</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Entrar" />
 </td>
 </tr>
 <tr valign="top">
@@ -53,10 +53,17 @@ a:active { text-decoration: none;color:#363636; }
 <div class="demo">
 
 <div id="dialog">
-	<iframe scrolling="auto" frameborder="0" width="550" height="250" src="../Usuario/Create"></iframe>
+	<iframe id="iframe_dialog" scrolling="auto" frameborder="0" width="550" height="250" src="../Usuario/Create"></iframe>
 </div>
 </body>
     <script type="text/javascript">
+        function cadastrarusuario() {
+            document.getElementById("iframe_dialog").src = '/Account/Register';
+                $("#dialog").dialog({
+                    title: 'Cadastro de usuário'
+                })
+                $("#dialog").dialog('open'); 
+        }
         var box1 = document.getElementById('UserName');
         box1.focus();
         $(function () {

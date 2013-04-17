@@ -31,12 +31,6 @@ namespace Helpers
         #endregion
 
         #region Remetente
-        public void setRemetente(string vStrRemetente)
-        {
-            this.vStrRemetente = vStrRemetente;
-            this.vStrNomeRemetente = "BolaoOSS";
-        }
-
         public void setRemetente(string vStrRemetente, string vStrNomeRemetente)
         {
             this.vStrRemetente = vStrRemetente;
