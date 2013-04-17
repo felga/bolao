@@ -46,6 +46,8 @@
 }
 <script type="text/javascript">
     var mensagem = '@TempData["message"]';
+    var login = '@TempData["login"]';
+    $('#UserName').val(login);
     if (mensagem.length > 0) {
         jAlert(mensagem,"Mensagem");
     }

@@ -12,6 +12,7 @@
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true, "Não foi possível criar a conta. Corrija os erros e tente novamente.")
+    @Html.AntiForgeryToken()
     <div>
         <fieldset>
             <legend>Account Information</legend>

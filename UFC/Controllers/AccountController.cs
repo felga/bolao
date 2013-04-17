@@ -27,6 +27,7 @@ namespace Rastreador.Controllers
         // POST: /Account/LogOn
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ForgotPassword(ForgotPasswordModel model)
         {
             if (ModelState.IsValid)
@@ -56,7 +57,8 @@ namespace Rastreador.Controllers
 
         public ActionResult LogOn()
         {
-            return View();
+            TempData["message"] = "Você precisa estar logado para acessar esta página.";
+            return RedirectToAction("Index","Home");
         }
 
         //
@@ -82,7 +84,17 @@ namespace Rastreador.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                    //ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                    MembershipUser oUser = Membership.GetUser(model.UserName);
+                    if (oUser != null && oUser.IsApproved == false)
+                    {
+                        TempData["message"] = "Este usuário ainda não foi ativado. verifique seu email e confirme sua conta.";
+                    }
+                    else
+                    {
+                        TempData["message"] = "Usuário ou senha incorreto.";
+                    }
+                    return RedirectToAction("Index", "Home", new { login = model.UserName });
                 }
             }
 
@@ -133,6 +145,7 @@ namespace Rastreador.Controllers
         // POST: /Account/Register
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterModel model)
         {
             model.UserName = model.Email;
@@ -180,6 +193,7 @@ namespace Rastreador.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ChangePassword(ChangePasswordModel model)
         {
             if (ModelState.IsValid)

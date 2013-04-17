@@ -10,6 +10,8 @@ namespace UFC.Controllers
     {
         public ActionResult Index()
         {
+            string login = Request.Params["login"];
+            TempData["login"] = login;
             return RedirectToAction("SelecionaEvento","APOSTA");
             //ViewBag.Message = "Welcome to ASP.NET MVC!";
             //return View();
